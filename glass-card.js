@@ -22,12 +22,13 @@ if (video && card && container && canvas) {
     requestAnimationFrame(render);
 
     const rect = card.getBoundingClientRect();
-    if (rect.width === 0 || rect.height === 0 || !video.videoWidth || !video.videoHeight) {
+    const vh = document.documentElement.clientHeight;
+    const vw = document.documentElement.clientWidth;
+
+    // Performance optimization: skip canvas drawing if card is outside the viewport
+    if (rect.width === 0 || rect.height === 0 || rect.bottom < -50 || rect.top > vh + 50 || !video.videoWidth || !video.videoHeight) {
       return;
     }
-
-    const vw = document.documentElement.clientWidth;
-    const vh = document.documentElement.clientHeight;
 
     container.style.left = `${-rect.left}px`;
     container.style.top = `${-rect.top}px`;

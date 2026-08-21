@@ -3,17 +3,19 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Terranova — Signals from the Deep Green</title>
+    <title>NDM ANIMATION — Stories in Motion</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="stylesheet" href="https://db.onlinewebfonts.com/c/0e6de1ec911a2e267ff136bbdd384a44?family=Helvetica+Neue+Light" />
     <link rel="stylesheet" href="./styles.css" />
   </head>
   <body>
+    <!-- LOCKED DESIGN ASSET: Background Video with Central Iridescent Glass Bubble -->
     <video id="bg-video" class="bg-video" aria-hidden="true"
            autoplay muted loop playsinline preload="auto"
            src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260816_125506_3a597378-ec85-4ebd-bd22-03b45508ac62.mp4"></video>
 
+    <!-- LOCKED DESIGN ASSET: Liquid-Glass Refraction SVG Filter -->
     <svg class="glass-defs" width="0" height="0" aria-hidden="true" focusable="false">
       <defs>
         <filter id="liquid-glass-refraction"
@@ -68,87 +70,196 @@
       </defs>
     </svg>
 
-    <main class="hero">
-      <div class="rule rule--left" aria-hidden="true">
-        <span class="rule__seg rule__seg--end"></span>
-        <span class="rule__plus">+</span>
-        <span class="rule__seg rule__seg--mid"></span>
-        <span class="rule__plus">+</span>
-        <span class="rule__seg rule__seg--end"></span>
-      </div>
-      <div class="rule rule--right" aria-hidden="true">
-        <span class="rule__seg rule__seg--end"></span>
-        <span class="rule__plus">+</span>
-        <span class="rule__seg rule__seg--mid"></span>
-        <span class="rule__plus">+</span>
-        <span class="rule__seg rule__seg--end"></span>
-      </div>
-
-      <nav class="nav">
-        <button id="menu-open" class="nav__item" aria-expanded="false" aria-controls="menu" type="button">
-          <svg class="icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-               stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <line x1="4" y1="6" x2="20" y2="6" />
-            <line x1="4" y1="12" x2="20" y2="12" />
-            <line x1="4" y1="18" x2="20" y2="18" />
-          </svg>
-          <span class="nav__label nav__label--menu">Menu</span>
-        </button>
-        <a href="#" class="nav__item">
-          <span class="nav__dot" aria-hidden="true"></span>
-          <span class="nav__label">Book a call</span>
-        </a>
-      </nav>
-
-      <div class="hero-bottom">
-        <div class="lede">
-          <h1 class="lede__title">Signals from<br />the Deep Green</h1>
-          <p class="lede__body">
-            An open research collective mapping, decoding, and archiving the silent
-            vibrations that bind our planet’s ecological networks.
-          </p>
-          <a class="chamfer" href="#">
-            <span class="chamfer__glass" aria-hidden="true"></span>
-            <svg class="chamfer__outline" viewBox="0 0 260 48" preserveAspectRatio="none" aria-hidden="true">
-              <polygon points="14,0 260,0 260,34 246,48 0,48 0,14"
-                       fill="none" stroke="currentColor" stroke-width="1.5" vector-effect="non-scaling-stroke" />
-            </svg>
-            <span class="chamfer__label">Start listening</span>
-            <svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                 stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <path d="M5 12h14" /><path d="m12 5 7 7-7 7" />
-            </svg>
-          </a>
+    <div class="app-wrapper">
+      <!-- 1. HERO / HOME SECTION -->
+      <section class="hero" id="home">
+        <!-- Vertical Architectural Rules (≥768px) -->
+        <div class="rule rule--left" aria-hidden="true">
+          <span class="rule__seg rule__seg--end"></span>
+          <span class="rule__plus">+</span>
+          <span class="rule__seg rule__seg--mid"></span>
+          <span class="rule__plus">+</span>
+          <span class="rule__seg rule__seg--end"></span>
+        </div>
+        <div class="rule rule--right" aria-hidden="true">
+          <span class="rule__seg rule__seg--end"></span>
+          <span class="rule__plus">+</span>
+          <span class="rule__seg rule__seg--mid"></span>
+          <span class="rule__plus">+</span>
+          <span class="rule__seg rule__seg--end"></span>
         </div>
 
-        <aside class="card group" data-glass-card>
-          <div id="dup-video-container"><canvas id="dup-image"></canvas></div>
-          <div class="card__frost" aria-hidden="true"></div>
+        <!-- Navigation Top Bar -->
+        <nav class="nav">
+          <button id="menu-open" class="nav__item" aria-expanded="false" aria-controls="menu" type="button">
+            <svg class="icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                 stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <line x1="4" y1="6" x2="20" y2="6" />
+              <line x1="4" y1="12" x2="20" y2="12" />
+              <line x1="4" y1="18" x2="20" y2="18" />
+            </svg>
+            <span class="nav__label nav__label--menu">Menu</span>
+          </button>
+          <a href="#contact" class="nav__item">
+            <span class="nav__dot" aria-hidden="true"></span>
+            <span class="nav__label">Let’s work</span>
+          </a>
+        </nav>
 
-          <div class="card__head">
-            <h2 class="card__title">Latest findings</h2>
-            <span class="card__index">//02</span>
+        <!-- Hero Bottom Grid (Lede Left + Refractive Liquid Glass Card Right) -->
+        <div class="hero-bottom">
+          <div class="lede">
+            <span class="lede__eyebrow">Portfolio & Motion Practice</span>
+            <h1 class="lede__title">NDM ANIMATION<br />Stories in motion.</h1>
+            <p class="lede__body">
+              Animation, motion, and visual storytelling crafted with precision, kinetic rhythm, and distinct art direction.
+            </p>
+            <a class="chamfer" href="#portfolio">
+              <span class="chamfer__glass" aria-hidden="true"></span>
+              <svg class="chamfer__outline" viewBox="0 0 260 48" preserveAspectRatio="none" aria-hidden="true">
+                <polygon points="14,0 260,0 260,34 246,48 0,48 0,14"
+                         fill="none" stroke="currentColor" stroke-width="1.5" vector-effect="non-scaling-stroke" />
+              </svg>
+              <span class="chamfer__label">View selected work</span>
+              <svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                   stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M5 12h14" /><path d="m12 5 7 7-7 7" />
+              </svg>
+            </a>
           </div>
 
-          <div class="card__body">
-            <div class="finding">
-              <h3 class="finding__title">Canopy Pulse Analysis 09.17</h3>
-              <p class="finding__text">Identified harmonic oscillation links between root mycelia networks and surrounding atmospheric moisture.</p>
+          <!-- Hero Right-Side Refractive Liquid Glass Window -->
+          <aside class="card group" data-glass-card>
+            <div id="dup-video-container"><canvas id="dup-image"></canvas></div>
+            <div class="card__frost" aria-hidden="true"></div>
+
+            <div class="card__head">
+              <h2 class="card__title">Selected work</h2>
+              <span class="card__index">//09</span>
             </div>
-            <div class="finding">
-              <h3 class="finding__title">Watershed Harmonic Index 11.06</h3>
-              <p class="finding__text">Forecasting framework for ecosystem regeneration spanning six continents using over 2,400 sensor arrays.</p>
+
+            <div class="card__body" id="hero-preview-list">
+              <!-- Populated dynamically by portfolio.js -->
+            </div>
+
+            <svg class="card__wave" viewBox="0 0 220 50" fill="none" aria-hidden="true">
+              <path d="M0 30 C10 30 12 45 18 45 C24 45 26 10 34 10 C42 10 44 40 52 40 C60 40 62 5 70 5 C78 5 80 42 88 42 C96 42 98 15 106 15 C114 15 116 38 124 38 C132 38 134 20 142 20 C150 20 152 35 160 35 C168 35 170 22 178 22 C186 22 188 32 196 32 C204 32 210 28 220 28"
+                    stroke="black" stroke-width="1.8" stroke-linecap="round" fill="none" />
+            </svg>
+          </aside>
+        </div>
+      </section>
+
+      <!-- 2. PORTFOLIO SECTION (9 SELECTED ANIMATION WORKS) -->
+      <section class="portfolio-section" id="portfolio">
+        <div class="portfolio-header">
+          <div>
+            <div class="portfolio-header__meta">Selected Archive // 09 Projects</div>
+            <h2 class="portfolio-header__title">Curated Animations &amp; Motion Studies</h2>
+          </div>
+          <div class="portfolio-header__controls">
+            <span class="portfolio-header__progress" id="portfolio-progress-indicator">01 // 09</span>
+            <div class="portfolio-nav-btns" aria-label="Portfolio navigation">
+              <button class="portfolio-nav-btn" id="portfolio-prev-btn" type="button" aria-label="Previous project">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M19 12H5M12 19l-7-7 7-7" />
+                </svg>
+              </button>
+              <button class="portfolio-nav-btn" id="portfolio-next-btn" type="button" aria-label="Next project">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M5 12h14M12 5l7 7-7 7" />
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- The 9 Projects Track (Horizontal on large desktop, vertical on laptop/mobile) -->
+        <div class="portfolio-track" id="portfolio-track">
+          <!-- Populated by portfolio.js -->
+        </div>
+      </section>
+
+      <!-- 3. SHORT ABOUT / PRACTICE SECTION -->
+      <section class="about-section" id="about">
+        <div class="about-container">
+          <span class="about-eyebrow">The Practice</span>
+          <p class="about-statement">
+            NDM ANIMATION is an independent animation and motion practice. Built around bold ideas, kinetic rhythm, and meticulous craft across commercial and experimental dimensions.
+          </p>
+          <div class="about-disciplines">
+            <span class="about-discipline-item">3D &amp; Procedural Simulation</span>
+            <span class="about-discipline-item">Kinetic Motion &amp; Typography</span>
+            <span class="about-discipline-item">Character &amp; Narrative Timing</span>
+            <span class="about-discipline-item">Art Direction &amp; Film Sequences</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- 4. CONTACT SECTION -->
+      <section class="contact-section" id="contact">
+        <div class="contact-container">
+          <div class="contact-info">
+            <span class="contact-eyebrow">Initiate</span>
+            <h2 class="contact-title">Let’s make<br />something move.</h2>
+            <p class="contact-body">
+              Available for select animation commissions, commercial motion direction, and collaborative visual projects worldwide.
+            </p>
+            <div class="contact-links">
+              <a class="contact-email-link" href="mailto:hello@ndmanimation.com">hello@ndmanimation.com</a>
+              <div class="contact-socials">
+                <a class="contact-social-link" href="#" target="_blank" rel="noopener">Instagram ↗</a>
+                <a class="contact-social-link" href="#" target="_blank" rel="noopener">LinkedIn ↗</a>
+                <a class="contact-social-link" href="#" target="_blank" rel="noopener">Vimeo ↗</a>
+              </div>
             </div>
           </div>
 
-          <svg class="card__wave" viewBox="0 0 220 50" fill="none" aria-hidden="true">
-            <path d="M0 30 C10 30 12 45 18 45 C24 45 26 10 34 10 C42 10 44 40 52 40 C60 40 62 5 70 5 C78 5 80 42 88 42 C96 42 98 15 106 15 C114 15 116 38 124 38 C132 38 134 20 142 20 C150 20 152 35 160 35 C168 35 170 22 178 22 C186 22 188 32 196 32 C204 32 210 28 220 28"
-                  stroke="black" stroke-width="1.8" stroke-linecap="round" fill="none" />
-          </svg>
-        </aside>
-      </div>
-    </main>
+          <div class="contact-form-wrapper">
+            <form class="contact-form" id="contact-form">
+              <div class="form-group">
+                <label class="form-label" for="name">Your Name</label>
+                <input class="form-input" type="text" id="name" name="name" required placeholder="Elena Vance" />
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="email">Email Address</label>
+                <input class="form-input" type="email" id="email" name="email" required placeholder="elena@studio.com" />
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="subject">Project Scope</label>
+                <input class="form-input" type="text" id="subject" name="subject" placeholder="3D Campaign / Brand Motion / Sequence" />
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="message">Message</label>
+                <textarea class="form-textarea" id="message" name="message" rows="4" required placeholder="Tell us about the project goals, timeline, and scope..."></textarea>
+              </div>
+              <button class="chamfer form-submit-btn" type="submit">
+                <span class="chamfer__glass" aria-hidden="true"></span>
+                <svg class="chamfer__outline" viewBox="0 0 260 48" preserveAspectRatio="none" aria-hidden="true">
+                  <polygon points="14,0 260,0 260,34 246,48 0,48 0,14"
+                           fill="none" stroke="currentColor" stroke-width="1.5" vector-effect="non-scaling-stroke" />
+                </svg>
+                <span class="chamfer__label">Send inquiry</span>
+                <svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                     stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M5 12h14" /><path d="m12 5 7 7-7 7" />
+                </svg>
+              </button>
+              <div class="contact-success" id="contact-success" role="status">
+                Thank you. Your message has been received. We will respond promptly.
+              </div>
+            </form>
+          </div>
+        </div>
 
+        <footer class="site-footer">
+          <span class="footer-copy">© 2026 NDM ANIMATION. All rights reserved.</span>
+          <a class="footer-top-btn" href="#home">Back to top ↑</a>
+        </footer>
+      </section>
+    </div>
+
+    <!-- 5. SLIDE-IN MENU OVERLAY -->
     <div class="menu" id="menu" aria-hidden="true">
       <div class="menu__backdrop" id="menu-backdrop"></div>
       <div class="menu__panel">
@@ -162,32 +273,24 @@
         </button>
 
         <nav class="menu__nav">
+          <a href="#home" class="menu__link">
+            <span class="menu__linkText">Home</span>
+            <svg class="icon menu__arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                 stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M5 12h14" />
+              <path d="m12 5 7 7-7 7" />
+            </svg>
+          </a>
+          <a href="#portfolio" class="menu__link">
+            <span class="menu__linkText">Portfolio</span>
+            <svg class="icon menu__arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                 stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M5 12h14" />
+              <path d="m12 5 7 7-7 7" />
+            </svg>
+          </a>
           <a href="#about" class="menu__link">
             <span class="menu__linkText">About</span>
-            <svg class="icon menu__arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                 stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <path d="M5 12h14" />
-              <path d="m12 5 7 7-7 7" />
-            </svg>
-          </a>
-          <a href="#research" class="menu__link">
-            <span class="menu__linkText">Research</span>
-            <svg class="icon menu__arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                 stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <path d="M5 12h14" />
-              <path d="m12 5 7 7-7 7" />
-            </svg>
-          </a>
-          <a href="#projects" class="menu__link">
-            <span class="menu__linkText">Projects</span>
-            <svg class="icon menu__arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                 stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <path d="M5 12h14" />
-              <path d="m12 5 7 7-7 7" />
-            </svg>
-          </a>
-          <a href="#journal" class="menu__link">
-            <span class="menu__linkText">Journal</span>
             <svg class="icon menu__arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                  stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
               <path d="M5 12h14" />
@@ -206,14 +309,13 @@
 
         <div class="menu__foot">
           <span class="menu__footLabel">Get in touch</span>
-          <a class="menu__mail" href="mailto:hello@terranova.earth">hello@terranova.earth</a>
+          <a class="menu__mail" href="mailto:hello@ndmanimation.com">hello@ndmanimation.com</a>
         </div>
       </div>
     </div>
 
+    <!-- Scripts -->
     <script type="module" src="./glass-card.js"></script>
     <script type="module" src="./ui.js"></script>
   </body>
 </html>
-
-

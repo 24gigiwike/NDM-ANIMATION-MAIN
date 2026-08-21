@@ -1,8 +1,12 @@
+import { initPortfolio } from './portfolio.js';
+
 const menu = document.getElementById('menu');
 const menuOpenBtn = document.getElementById('menu-open');
 const menuCloseBtn = document.getElementById('menu-close');
 const menuBackdrop = document.getElementById('menu-backdrop');
 const menuLinks = document.querySelectorAll('.menu__link');
+const contactForm = document.getElementById('contact-form');
+const contactSuccess = document.getElementById('contact-success');
 
 function setMenu(open) {
   if (!menu || !menuOpenBtn) return;
@@ -14,11 +18,13 @@ function setMenu(open) {
     if (menuCloseBtn) {
       menuCloseBtn.focus({ preventScroll: true });
     }
+    document.body.style.overflow = 'hidden';
   } else {
     menu.classList.remove('is-open');
     menu.setAttribute('aria-hidden', 'true');
     menuOpenBtn.setAttribute('aria-expanded', 'false');
     menuOpenBtn.focus({ preventScroll: true });
+    document.body.style.overflow = '';
   }
 }
 
@@ -35,7 +41,17 @@ if (menuBackdrop) {
 }
 
 menuLinks.forEach((link) => {
-  link.addEventListener('click', () => setMenu(false));
+  link.addEventListener('click', (e) => {
+    setMenu(false);
+    const href = link.getAttribute('href');
+    if (href && href.startsWith('#')) {
+      const target = document.querySelector(href);
+      if (target) {
+        e.preventDefault();
+        target.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+  });
 });
 
 window.addEventListener('keydown', (e) => {
@@ -43,3 +59,42 @@ window.addEventListener('keydown', (e) => {
     setMenu(false);
   }
 });
+
+// Contact Form Handler
+if (contactForm) {
+  contactForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const btn = contactForm.querySelector('button[type="submit"]');
+    const originalText = btn ? btn.innerHTML : 'Send Message';
+    
+    if (btn) {
+      btn.disabled = true;
+      btn.textContent = 'Transmitting...';
+    }
+
+    setTimeout(() => {
+      contactForm.reset();
+      if (btn) {
+        btn.disabled = false;
+        btn.innerHTML = originalText;
+      }
+      if (contactSuccess) {
+        contactSuccess.style.display = 'block';
+        contactSuccess.setAttribute('aria-live', 'polite');
+        setTimeout(() => {
+          contactSuccess.style.display = 'none';
+        }, 5000);
+      }
+    }, 800);
+  });
+}
+
+// Initialize portfolio when DOM is ready
+document.addEventListener('DOMContentLoaded', () => {
+  initPortfolio();
+});
+
+// Fallback if DOM is already loaded
+if (document.readyState === 'interactive' || document.readyState === 'complete') {
+  initPortfolio();
+}

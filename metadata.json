@@ -1,6 +1,6 @@
 {
-  "name": "Terranova — Signals from the Deep Green",
-  "description": "Single-screen hero landing page with a full-bleed looping background video, a real-time refractive liquid glass card powered by SVG filters and 2D canvas frame synchronization, and a slide-in navigation menu.",
+  "name": "NDM ANIMATION — Stories in Motion",
+  "description": "Portfolio website for NDM ANIMATION featuring the central iridescent liquid-glass hero visual, 9 curated animation works with horizontal/vertical exhibition layouts, and direct inquiry capabilities.",
   "requestFramePermissions": [],
   "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
 }
