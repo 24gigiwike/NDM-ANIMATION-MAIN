@@ -1,0 +1,7 @@
+{
+  "name": "Terranova — Signals from the Deep Green",
+  "description": "Single-screen hero landing page with a full-bleed looping background video, a real-time refractive liquid glass card powered by SVG filters and 2D canvas frame synchronization, and a slide-in navigation menu.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
+
