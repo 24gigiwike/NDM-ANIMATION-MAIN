@@ -46,12 +46,6 @@ export function initPortfolio() {
   // 2. Render Portfolio Items across all 4 categories
   function renderProjectCard(p, globalIndex) {
     const globalNumStr = String(globalIndex + 1).padStart(2, '0');
-    let badgeModifier = '';
-    if (p.categoryType === 'ai') badgeModifier = 'portfolio-item__category-badge--ai';
-    else if (p.categoryType === 'animation') badgeModifier = 'portfolio-item__category-badge--animation';
-    else if (p.categoryType === 'motion') badgeModifier = 'portfolio-item__category-badge--motion';
-
-    const numPrefix = p.categoryType === 'ai' ? 'AI ' : '';
 
     return `
       <article class="portfolio-item" id="${p.id}" data-category="${p.categoryType}" data-number="${p.number}" data-global-number="${globalNumStr}">
@@ -89,21 +83,20 @@ export function initPortfolio() {
               </svg>
             </button>
           </div>
-
-          <div class="portfolio-item__number-tag" aria-hidden="true">${p.displayNumber || p.number}</div>
         </div>
 
         <div class="portfolio-item__info">
           <div class="portfolio-item__header">
             <div class="portfolio-item__titles">
-              <span class="portfolio-item__num">// ${numPrefix}${p.number}</span>
+              <span class="portfolio-item__num">// ${p.number}</span>
               <h3 class="portfolio-item__title">${p.title}</h3>
             </div>
             <span class="portfolio-item__year">${p.year}</span>
           </div>
           <div class="portfolio-item__details">
-            <div class="portfolio-item__category-wrap">
-              <span class="portfolio-item__category-badge ${badgeModifier}">${p.category}</span>
+            <div class="portfolio-item__category-editorial">
+              <span class="portfolio-item__category-text">${p.category}</span>
+              <span class="portfolio-item__category-sep" aria-hidden="true">—</span>
               <span class="portfolio-item__category-sub">${p.categoryLabel}</span>
             </div>
             <p class="portfolio-item__desc">${p.description}</p>
@@ -113,17 +106,18 @@ export function initPortfolio() {
     `;
   }
 
-  const aiIntroCard = `
-    <article class="portfolio-item portfolio-item--intro" id="ai-works-intro" data-category="ai">
+  const worksIntroCard = `
+    <article class="portfolio-item portfolio-item--intro" id="works-intro" data-category="works">
       <div class="portfolio-intro-card">
         <div class="portfolio-intro-card__header">
-          <span class="portfolio-intro-card__eyebrow">// CATEGORY 02</span>
-          <span class="portfolio-intro-card__badge">AI WORKS</span>
+          <span class="portfolio-intro-card__eyebrow">// SECTION 01</span>
+          <span class="portfolio-intro-card__category-title">WORKS</span>
         </div>
         <div class="portfolio-intro-card__body">
-          <h3 class="portfolio-intro-card__title">AI Motion &amp; Generative Direction</h3>
+          <h3 class="portfolio-intro-card__title">Selected Animation &amp; Commercial Works</h3>
+          <div class="portfolio-intro-card__divider" aria-hidden="true"></div>
           <p class="portfolio-intro-card__desc">
-            A dedicated category exploring generative motion, organic synthetics, and computational cinematography crafted with distinct art direction.
+            Kinetic choreography, rhythm, and visual storytelling crafted across commercial motion design, brand narratives, and character dynamics.
           </p>
         </div>
         <div class="portfolio-intro-card__footer">
@@ -132,7 +126,33 @@ export function initPortfolio() {
             <span class="rule__plus">+</span>
             <span class="rule__seg rule__seg--mid"></span>
           </div>
-          <span class="portfolio-intro-card__meta">03 Curated AI Works →</span>
+          <span class="portfolio-intro-card__meta">03 Studio Works →</span>
+        </div>
+      </div>
+    </article>
+  `;
+
+  const aiIntroCard = `
+    <article class="portfolio-item portfolio-item--intro" id="ai-works-intro" data-category="ai">
+      <div class="portfolio-intro-card">
+        <div class="portfolio-intro-card__header">
+          <span class="portfolio-intro-card__eyebrow">// SECTION 02</span>
+          <span class="portfolio-intro-card__category-title">AI WORKS</span>
+        </div>
+        <div class="portfolio-intro-card__body">
+          <h3 class="portfolio-intro-card__title">Generative Motion &amp; Synthetic Cinematography</h3>
+          <div class="portfolio-intro-card__divider" aria-hidden="true"></div>
+          <p class="portfolio-intro-card__desc">
+            Studio motion studies examining procedural camera velocity, organic textures, and synthetic cinematography within NDM's animation direction practice.
+          </p>
+        </div>
+        <div class="portfolio-intro-card__footer">
+          <div class="portfolio-intro-card__rule">
+            <span class="rule__seg rule__seg--mid"></span>
+            <span class="rule__plus">+</span>
+            <span class="rule__seg rule__seg--mid"></span>
+          </div>
+          <span class="portfolio-intro-card__meta">03 Studio Studies →</span>
         </div>
       </div>
     </article>
@@ -142,11 +162,12 @@ export function initPortfolio() {
     <article class="portfolio-item portfolio-item--intro" id="animation-intro" data-category="animation">
       <div class="portfolio-intro-card">
         <div class="portfolio-intro-card__header">
-          <span class="portfolio-intro-card__eyebrow">// CATEGORY 03</span>
-          <span class="portfolio-intro-card__badge" style="background: rgba(0,0,0,0.85); color:#fff;">ANIMATION</span>
+          <span class="portfolio-intro-card__eyebrow">// SECTION 03</span>
+          <span class="portfolio-intro-card__category-title">ANIMATION</span>
         </div>
         <div class="portfolio-intro-card__body">
           <h3 class="portfolio-intro-card__title">Character &amp; Dimensional Animation</h3>
+          <div class="portfolio-intro-card__divider" aria-hidden="true"></div>
           <p class="portfolio-intro-card__desc">
             Fluid simulations, character rhythm, and dimensional keyframe choreographies created for commercial, narrative, and editorial expressions.
           </p>
@@ -167,11 +188,12 @@ export function initPortfolio() {
     <article class="portfolio-item portfolio-item--intro" id="motion-intro" data-category="motion">
       <div class="portfolio-intro-card">
         <div class="portfolio-intro-card__header">
-          <span class="portfolio-intro-card__eyebrow">// CATEGORY 04</span>
-          <span class="portfolio-intro-card__badge" style="background: rgba(0,0,0,0.12); color:#000;">MOTION DESIGN</span>
+          <span class="portfolio-intro-card__eyebrow">// SECTION 04</span>
+          <span class="portfolio-intro-card__category-title">MOTION DESIGN</span>
         </div>
         <div class="portfolio-intro-card__body">
           <h3 class="portfolio-intro-card__title">Spatial Composition &amp; Kinetic Systems</h3>
+          <div class="portfolio-intro-card__divider" aria-hidden="true"></div>
           <p class="portfolio-intro-card__desc">
             Atmospheric lighting, geometric algorithmic curves, and kinetic typographic sequences designed for immersive brand and screen environments.
           </p>
@@ -193,7 +215,7 @@ export function initPortfolio() {
   const animationHtml = animationProjects.map((p, idx) => renderProjectCard(p, idx + 6)).join('');
   const motionHtml = motionProjects.map((p, idx) => renderProjectCard(p, idx + 10)).join('');
 
-  container.innerHTML = regularHtml + aiIntroCard + aiHtml + animationIntroCard + animationHtml + motionIntroCard + motionHtml;
+  container.innerHTML = worksIntroCard + regularHtml + aiIntroCard + aiHtml + animationIntroCard + animationHtml + motionIntroCard + motionHtml;
 
   // 3. Category Filter Logic (ALL / WORKS / AI WORKS / ANIMATION / MOTION DESIGN)
   let activeFilter = 'all';
@@ -212,14 +234,13 @@ export function initPortfolio() {
 
     allItems.forEach((item) => {
       const itemCat = item.dataset.category;
-      const isIntro = item.classList.contains('portfolio-item--intro');
 
       let show = false;
       if (filter === 'all') {
         show = true;
       } else {
-        // Direct category view: display project cards for the active category
-        show = itemCat === filter && !isIntro;
+        // Direct category view: display section intro label and project cards for the active category
+        show = itemCat === filter;
       }
 
       if (show) {

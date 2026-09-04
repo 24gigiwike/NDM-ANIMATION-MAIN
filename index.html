@@ -4,9 +4,12 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>NDM ANIMATION — Stories in Motion</title>
+    <meta name="description" content="Portfolio website for NDM ANIMATION featuring the central iridescent liquid-glass hero visual, 15 curated works across Animation, Motion Design, AI Works, and Selected Works with horizontal/vertical exhibition layouts." />
+    <meta property="og:title" content="NDM ANIMATION — Stories in Motion" />
+    <meta property="og:description" content="Portfolio website for NDM ANIMATION featuring the central iridescent liquid-glass hero visual, 15 curated works across Animation, Motion Design, AI Works, and Selected Works with horizontal/vertical exhibition layouts." />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link rel="stylesheet" href="https://db.onlinewebfonts.com/c/0e6de1ec911a2e267ff136bbdd384a44?family=Helvetica+Neue+Light" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="./styles.css" />
   </head>
   <body>
@@ -100,8 +103,12 @@
             </svg>
             <span class="nav__label nav__label--menu">Menu</span>
           </button>
-          <a href="#contact" class="nav__item">
-            <span class="nav__dot" aria-hidden="true"></span>
+          <a href="#contact" class="nav__item" id="nav-lets-work" aria-label="Go to contact section - Let's work">
+            <span class="nav__dot" aria-hidden="true">
+              <svg class="star-5pt-icon" viewBox="0 0 24 24" width="12" height="12" fill="currentColor" aria-hidden="true">
+                <polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26" />
+              </svg>
+            </span>
             <span class="nav__label">Let’s work</span>
           </a>
         </nav>
@@ -158,12 +165,16 @@
             <h2 class="portfolio-header__title">Curated Animations &amp; Motion Studies</h2>
           </div>
           <div class="portfolio-header__controls">
-            <!-- Minimal Category Navigation -->
+            <!-- Minimal Category Navigation (Plain Typography, No Pills, No Capsules) -->
             <nav class="portfolio-filters" id="portfolio-filters" aria-label="Filter works by category">
               <button class="portfolio-filter-btn is-active" type="button" data-filter="all" aria-pressed="true">ALL</button>
+              <span class="portfolio-filter-sep" aria-hidden="true">/</span>
               <button class="portfolio-filter-btn" type="button" data-filter="works" aria-pressed="false">WORKS</button>
+              <span class="portfolio-filter-sep" aria-hidden="true">/</span>
               <button class="portfolio-filter-btn" type="button" data-filter="ai" aria-pressed="false">AI WORKS</button>
+              <span class="portfolio-filter-sep" aria-hidden="true">/</span>
               <button class="portfolio-filter-btn" type="button" data-filter="animation" aria-pressed="false">ANIMATION</button>
+              <span class="portfolio-filter-sep" aria-hidden="true">/</span>
               <button class="portfolio-filter-btn" type="button" data-filter="motion" aria-pressed="false">MOTION DESIGN</button>
             </nav>
             <span class="portfolio-header__progress" id="portfolio-progress-indicator">01 // 15</span>
@@ -195,17 +206,109 @@
           <p class="about-statement">
             NDM ANIMATION is an independent animation and motion practice. Built around bold ideas, kinetic rhythm, and meticulous craft across commercial and experimental dimensions.
           </p>
-          <div class="about-disciplines">
-            <span class="about-discipline-item">3D &amp; Procedural Simulation</span>
-            <span class="about-discipline-item">Kinetic Motion &amp; Typography</span>
-            <span class="about-discipline-item">Character &amp; Narrative Timing</span>
-            <span class="about-discipline-item">Art Direction &amp; Film Sequences</span>
+          <div class="about-disciplines" id="about-disciplines">
+            <!-- Discipline 01 -->
+            <div class="about-discipline-item" id="about-discipline-01">
+              <svg class="about-discipline-wave-frame" viewBox="0 0 400 80" preserveAspectRatio="none" aria-hidden="true">
+                <path class="wave-frame-path" vector-effect="non-scaling-stroke" d="M 0 8 C 10 2, 15 2, 20 8 S 30 14, 40 8 S 50 2, 60 8 S 70 14, 80 8 S 90 2, 100 8 S 110 14, 120 8 S 130 2, 140 8 S 150 14, 160 8 S 170 2, 180 8 S 190 14, 200 8 S 210 2, 220 8 S 230 14, 240 8 S 250 2, 260 8 S 270 14, 280 8 S 290 2, 300 8 S 310 14, 320 8 S 330 2, 340 8 S 350 14, 360 8 S 370 2, 380 8 S 390 14, 400 8 C 404 26, 404 54, 400 72 C 390 66, 385 66, 380 72 S 370 78, 360 72 S 350 66, 340 72 S 330 78, 320 72 S 310 66, 300 72 S 290 78, 280 72 S 270 66, 260 72 S 250 78, 240 72 S 230 66, 220 72 S 210 78, 200 72 S 190 66, 180 72 S 170 78, 160 72 S 150 66, 140 72 S 130 78, 120 72 S 110 66, 100 72 S 90 78, 80 72 S 70 66, 60 72 S 50 78, 40 72 S 30 66, 20 72 S 10 78, 0 72 C -4 54, -4 26, 0 8 Z" />
+              </svg>
+              <div class="about-discipline-inner">
+                <div class="about-discipline-meta">
+                  <div class="about-discipline-lead">
+                    <svg class="about-discipline-vector-squiggle" viewBox="0 0 24 12" fill="none" aria-hidden="true">
+                      <path d="M1 6 Q 6 1, 12 6 T 23 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <span class="about-discipline-num">// 01</span>
+                  </div>
+                  <span class="about-discipline-category">SIMULATION</span>
+                </div>
+                <h3 class="about-discipline-name">3D &amp; Procedural Simulation</h3>
+                <div class="about-discipline-wave-stream" aria-hidden="true">
+                  <svg class="about-discipline-stream-svg" viewBox="0 0 320 12" preserveAspectRatio="none">
+                    <path class="stream-wave-path stream-wave-path--1" d="M -40 6 C -30 1, -25 1, -20 6 S -10 11, 0 6 S 10 1, 20 6 S 30 11, 40 6 S 50 1, 60 6 S 70 11, 80 6 S 90 1, 100 6 S 110 11, 120 6 S 130 1, 140 6 S 150 11, 160 6 S 170 1, 180 6 S 190 11, 200 6 S 210 1, 220 6 S 230 11, 240 6 S 250 1, 260 6 S 270 11, 280 6 S 290 1, 300 6 S 310 11, 320 6 S 330 1, 340 6 S 350 11, 360 6" />
+                  </svg>
+                </div>
+              </div>
+            </div>
+
+            <!-- Discipline 02 -->
+            <div class="about-discipline-item" id="about-discipline-02">
+              <svg class="about-discipline-wave-frame" viewBox="0 0 400 80" preserveAspectRatio="none" aria-hidden="true">
+                <path class="wave-frame-path" vector-effect="non-scaling-stroke" d="M 0 8 C 10 2, 15 2, 20 8 S 30 14, 40 8 S 50 2, 60 8 S 70 14, 80 8 S 90 2, 100 8 S 110 14, 120 8 S 130 2, 140 8 S 150 14, 160 8 S 170 2, 180 8 S 190 14, 200 8 S 210 2, 220 8 S 230 14, 240 8 S 250 2, 260 8 S 270 14, 280 8 S 290 2, 300 8 S 310 14, 320 8 S 330 2, 340 8 S 350 14, 360 8 S 370 2, 380 8 S 390 14, 400 8 C 404 26, 404 54, 400 72 C 390 66, 385 66, 380 72 S 370 78, 360 72 S 350 66, 340 72 S 330 78, 320 72 S 310 66, 300 72 S 290 78, 280 72 S 270 66, 260 72 S 250 78, 240 72 S 230 66, 220 72 S 210 78, 200 72 S 190 66, 180 72 S 170 78, 160 72 S 150 66, 140 72 S 130 78, 120 72 S 110 66, 100 72 S 90 78, 80 72 S 70 66, 60 72 S 50 78, 40 72 S 30 66, 20 72 S 10 78, 0 72 C -4 54, -4 26, 0 8 Z" />
+              </svg>
+              <div class="about-discipline-inner">
+                <div class="about-discipline-meta">
+                  <div class="about-discipline-lead">
+                    <svg class="about-discipline-vector-squiggle" viewBox="0 0 24 12" fill="none" aria-hidden="true">
+                      <path d="M1 6 Q 6 1, 12 6 T 23 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <span class="about-discipline-num">// 02</span>
+                  </div>
+                  <span class="about-discipline-category">KINETICS</span>
+                </div>
+                <h3 class="about-discipline-name">Kinetic Motion &amp; Typography</h3>
+                <div class="about-discipline-wave-stream" aria-hidden="true">
+                  <svg class="about-discipline-stream-svg" viewBox="0 0 320 12" preserveAspectRatio="none">
+                    <path class="stream-wave-path stream-wave-path--2" d="M -40 6 C -30 1, -25 1, -20 6 S -10 11, 0 6 S 10 1, 20 6 S 30 11, 40 6 S 50 1, 60 6 S 70 11, 80 6 S 90 1, 100 6 S 110 11, 120 6 S 130 1, 140 6 S 150 11, 160 6 S 170 1, 180 6 S 190 11, 200 6 S 210 1, 220 6 S 230 11, 240 6 S 250 1, 260 6 S 270 11, 280 6 S 290 1, 300 6 S 310 11, 320 6 S 330 1, 340 6 S 350 11, 360 6" />
+                  </svg>
+                </div>
+              </div>
+            </div>
+
+            <!-- Discipline 03 -->
+            <div class="about-discipline-item" id="about-discipline-03">
+              <svg class="about-discipline-wave-frame" viewBox="0 0 400 80" preserveAspectRatio="none" aria-hidden="true">
+                <path class="wave-frame-path" vector-effect="non-scaling-stroke" d="M 0 8 C 10 2, 15 2, 20 8 S 30 14, 40 8 S 50 2, 60 8 S 70 14, 80 8 S 90 2, 100 8 S 110 14, 120 8 S 130 2, 140 8 S 150 14, 160 8 S 170 2, 180 8 S 190 14, 200 8 S 210 2, 220 8 S 230 14, 240 8 S 250 2, 260 8 S 270 14, 280 8 S 290 2, 300 8 S 310 14, 320 8 S 330 2, 340 8 S 350 14, 360 8 S 370 2, 380 8 S 390 14, 400 8 C 404 26, 404 54, 400 72 C 390 66, 385 66, 380 72 S 370 78, 360 72 S 350 66, 340 72 S 330 78, 320 72 S 310 66, 300 72 S 290 78, 280 72 S 270 66, 260 72 S 250 78, 240 72 S 230 66, 220 72 S 210 78, 200 72 S 190 66, 180 72 S 170 78, 160 72 S 150 66, 140 72 S 130 78, 120 72 S 110 66, 100 72 S 90 78, 80 72 S 70 66, 60 72 S 50 78, 40 72 S 30 66, 20 72 S 10 78, 0 72 C -4 54, -4 26, 0 8 Z" />
+              </svg>
+              <div class="about-discipline-inner">
+                <div class="about-discipline-meta">
+                  <div class="about-discipline-lead">
+                    <svg class="about-discipline-vector-squiggle" viewBox="0 0 24 12" fill="none" aria-hidden="true">
+                      <path d="M1 6 Q 6 1, 12 6 T 23 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <span class="about-discipline-num">// 03</span>
+                  </div>
+                  <span class="about-discipline-category">CHOREOGRAPHY</span>
+                </div>
+                <h3 class="about-discipline-name">Character &amp; Narrative Timing</h3>
+                <div class="about-discipline-wave-stream" aria-hidden="true">
+                  <svg class="about-discipline-stream-svg" viewBox="0 0 320 12" preserveAspectRatio="none">
+                    <path class="stream-wave-path stream-wave-path--3" d="M -40 6 C -30 1, -25 1, -20 6 S -10 11, 0 6 S 10 1, 20 6 S 30 11, 40 6 S 50 1, 60 6 S 70 11, 80 6 S 90 1, 100 6 S 110 11, 120 6 S 130 1, 140 6 S 150 11, 160 6 S 170 1, 180 6 S 190 11, 200 6 S 210 1, 220 6 S 230 11, 240 6 S 250 1, 260 6 S 270 11, 280 6 S 290 1, 300 6 S 310 11, 320 6 S 330 1, 340 6 S 350 11, 360 6" />
+                  </svg>
+                </div>
+              </div>
+            </div>
+
+            <!-- Discipline 04 -->
+            <div class="about-discipline-item" id="about-discipline-04">
+              <svg class="about-discipline-wave-frame" viewBox="0 0 400 80" preserveAspectRatio="none" aria-hidden="true">
+                <path class="wave-frame-path" vector-effect="non-scaling-stroke" d="M 0 8 C 10 2, 15 2, 20 8 S 30 14, 40 8 S 50 2, 60 8 S 70 14, 80 8 S 90 2, 100 8 S 110 14, 120 8 S 130 2, 140 8 S 150 14, 160 8 S 170 2, 180 8 S 190 14, 200 8 S 210 2, 220 8 S 230 14, 240 8 S 250 2, 260 8 S 270 14, 280 8 S 290 2, 300 8 S 310 14, 320 8 S 330 2, 340 8 S 350 14, 360 8 S 370 2, 380 8 S 390 14, 400 8 C 404 26, 404 54, 400 72 C 390 66, 385 66, 380 72 S 370 78, 360 72 S 350 66, 340 72 S 330 78, 320 72 S 310 66, 300 72 S 290 78, 280 72 S 270 66, 260 72 S 250 78, 240 72 S 230 66, 220 72 S 210 78, 200 72 S 190 66, 180 72 S 170 78, 160 72 S 150 66, 140 72 S 130 78, 120 72 S 110 66, 100 72 S 90 78, 80 72 S 70 66, 60 72 S 50 78, 40 72 S 30 66, 20 72 S 10 78, 0 72 C -4 54, -4 26, 0 8 Z" />
+              </svg>
+              <div class="about-discipline-inner">
+                <div class="about-discipline-meta">
+                  <div class="about-discipline-lead">
+                    <svg class="about-discipline-vector-squiggle" viewBox="0 0 24 12" fill="none" aria-hidden="true">
+                      <path d="M1 6 Q 6 1, 12 6 T 23 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <span class="about-discipline-num">// 04</span>
+                  </div>
+                  <span class="about-discipline-category">CINEMATICS</span>
+                </div>
+                <h3 class="about-discipline-name">Art Direction &amp; Film Sequences</h3>
+                <div class="about-discipline-wave-stream" aria-hidden="true">
+                  <svg class="about-discipline-stream-svg" viewBox="0 0 320 12" preserveAspectRatio="none">
+                    <path class="stream-wave-path stream-wave-path--4" d="M -40 6 C -30 1, -25 1, -20 6 S -10 11, 0 6 S 10 1, 20 6 S 30 11, 40 6 S 50 1, 60 6 S 70 11, 80 6 S 90 1, 100 6 S 110 11, 120 6 S 130 1, 140 6 S 150 11, 160 6 S 170 1, 180 6 S 190 11, 200 6 S 210 1, 220 6 S 230 11, 240 6 S 250 1, 260 6 S 270 11, 280 6 S 290 1, 300 6 S 310 11, 320 6 S 330 1, 340 6 S 350 11, 360 6" />
+                  </svg>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
-      <!-- 4. CONTACT SECTION -->
-      <section class="contact-section" id="contact">
+      <!-- 4. CONTACT SECTION (LET'S WORK) -->
+      <section class="contact-section" id="contact" data-section="lets-work">
+        <span id="lets-work" class="anchor-offset" aria-hidden="true"></span>
         <div class="contact-container">
           <div class="contact-info">
             <span class="contact-eyebrow">Initiate</span>
@@ -227,11 +330,11 @@
             <form class="contact-form" id="contact-form">
               <div class="form-group">
                 <label class="form-label" for="name">Your Name</label>
-                <input class="form-input" type="text" id="name" name="name" required placeholder="Elena Vance" />
+                <input class="form-input" type="text" id="name" name="name" required placeholder="JOHN DOE" />
               </div>
               <div class="form-group">
                 <label class="form-label" for="email">Email Address</label>
-                <input class="form-input" type="email" id="email" name="email" required placeholder="elena@studio.com" />
+                <input class="form-input" type="email" id="email" name="email" required placeholder="john@example.com" />
               </div>
               <div class="form-group">
                 <label class="form-label" for="subject">Project Scope</label>

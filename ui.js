@@ -49,9 +49,36 @@ menuLinks.forEach((link) => {
       if (target) {
         e.preventDefault();
         target.scrollIntoView({ behavior: 'smooth' });
+        if (href === '#contact' || href === '#lets-work') {
+          setTimeout(() => {
+            const nameInput = document.getElementById('name');
+            if (nameInput) nameInput.focus({ preventScroll: true });
+          }, 500);
+        }
       }
     }
   });
+});
+
+// Top bar and in-page "Let's work" / contact link handlers
+const letsWorkLinks = document.querySelectorAll('a[href="#contact"], a[href="#lets-work"]');
+letsWorkLinks.forEach((link) => {
+  // If it's already a menuLink, the above handler handles menu closing
+  if (!link.classList.contains('menu__link')) {
+    link.addEventListener('click', (e) => {
+      const target = document.getElementById('contact');
+      if (target) {
+        e.preventDefault();
+        setMenu(false);
+        target.scrollIntoView({ behavior: 'smooth' });
+        window.history.pushState(null, '', '#contact');
+        setTimeout(() => {
+          const nameInput = document.getElementById('name');
+          if (nameInput) nameInput.focus({ preventScroll: true });
+        }, 500);
+      }
+    });
+  }
 });
 
 window.addEventListener('keydown', (e) => {

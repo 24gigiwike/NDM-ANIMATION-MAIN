@@ -48,38 +48,38 @@ export const aiProjects = [
   {
     id: "ai-work-01",
     number: "01",
-    displayNumber: "AI 01",
-    title: "AI Work 01",
+    displayNumber: "01",
+    title: "Generative Motion 01",
     videoUrl: "https://res.cloudinary.com/dtkluxukm/video/upload/v1788372015/Video_for_Skin_care_brand_ctqd9s.mp4",
     categoryType: "ai",
     category: "AI WORKS",
-    categoryLabel: "AI Motion & Direction",
+    categoryLabel: "Generative Motion & Direction",
     year: "2026",
     description: "Exploration of generative motion, organic textures, and synthetic cinematography."
   },
   {
     id: "ai-work-02",
     number: "02",
-    displayNumber: "AI 02",
-    title: "AI Work 02",
+    displayNumber: "02",
+    title: "Generative Motion 02",
     videoUrl: "https://res.cloudinary.com/dtkluxukm/video/upload/v1788372014/Video_for_Hair_Care_Brand_rujuce.mp4",
     categoryType: "ai",
     category: "AI WORKS",
-    categoryLabel: "AI Motion & Simulation",
+    categoryLabel: "Fluid Velocity & Strand Dynamics",
     year: "2026",
-    description: "Generative fluid velocity and kinetic strand dynamics under atmospheric lighting."
+    description: "Fluid velocity study and kinetic strand dynamics under directional studio lighting."
   },
   {
     id: "ai-work-03",
     number: "03",
-    displayNumber: "AI 03",
-    title: "AI Work 03",
+    displayNumber: "03",
+    title: "Generative Motion 03",
     videoUrl: "https://res.cloudinary.com/dtkluxukm/video/upload/v1788372014/Video_for_Web_Designer_ugbofi.mp4",
     categoryType: "ai",
     category: "AI WORKS",
-    categoryLabel: "AI Visual Direction",
+    categoryLabel: "Spatial & Dimensional Architecture",
     year: "2026",
-    description: "Computational dimensional study balancing structural geometry and spatial flow."
+    description: "Dimensional study balancing structural geometry, camera velocity, and spatial flow."
   }
 ];
 
