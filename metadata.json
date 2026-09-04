@@ -1,6 +1,6 @@
 {
   "name": "NDM ANIMATION — Stories in Motion",
-  "description": "Portfolio website for NDM ANIMATION featuring the central iridescent liquid-glass hero visual, 9 curated animation works with horizontal/vertical exhibition layouts, and direct inquiry capabilities.",
+  "description": "Portfolio website for NDM ANIMATION featuring the central iridescent liquid-glass hero visual, 15 curated works across Animation, Motion Design, AI Works, and Selected Works with horizontal/vertical exhibition layouts.",
   "requestFramePermissions": [],
   "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
 }

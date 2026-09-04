@@ -1,4 +1,10 @@
-import { projects } from './portfolio-data.js';
+import { 
+  projects, 
+  regularProjects, 
+  aiProjects, 
+  animationProjects, 
+  motionProjects 
+} from './portfolio-data.js';
 
 export function initPortfolio() {
   const container = document.getElementById('portfolio-track');
@@ -6,87 +12,261 @@ export function initPortfolio() {
   const progressText = document.getElementById('portfolio-progress-indicator');
   const prevBtn = document.getElementById('portfolio-prev-btn');
   const nextBtn = document.getElementById('portfolio-next-btn');
+  const filterBtns = document.querySelectorAll('.portfolio-filter-btn');
 
   if (!container) return;
 
-  // 1. Populate the hero card preview list (repurposing the right side findings panel)
+  const categoryTotals = {
+    all: '15',
+    works: '03',
+    ai: '03',
+    animation: '04',
+    motion: '05'
+  };
+
+  // 1. Populate the hero card preview list (curated selection across categories)
   if (previewList) {
-    previewList.innerHTML = projects.slice(0, 4).map((p, index) => `
-      <a href="#${p.id}" class="finding finding--link" data-jump-to="${p.id}">
+    const previewItems = [
+      regularProjects[0],
+      aiProjects[0],
+      animationProjects[0],
+      motionProjects[0]
+    ];
+    previewList.innerHTML = previewItems.map((p) => `
+      <a href="#${p.id}" class="finding finding--link" data-jump-to="${p.id}" data-category="${p.categoryType}">
         <div class="finding__head">
-          <h3 class="finding__title">WORK ${p.number}</h3>
-          <span class="finding__meta">${p.category.split('&')[0].trim()}</span>
+          <h3 class="finding__title">${p.category === 'WORKS' ? 'WORK' : p.category} ${p.number}</h3>
+          <span class="finding__meta">${p.category}</span>
         </div>
         <p class="finding__text">${p.description}</p>
       </a>
     `).join('');
   }
 
-  // 2. Render the 9 Portfolio Projects
-  container.innerHTML = projects.map((p, index) => `
-    <article class="portfolio-item" id="${p.id}" data-index="${index}" data-number="${p.number}">
-      <div class="portfolio-item__video-wrapper">
-        <div class="portfolio-item__video-shimmer" aria-hidden="true"></div>
-        <video 
-          class="portfolio-item__video" 
-          data-src="${p.videoUrl}"
-          playsinline 
-          muted 
-          loop 
-          preload="metadata"
-          aria-label="${p.title} - ${p.category} animation preview"
-        ></video>
-        
-        <div class="portfolio-item__controls" aria-hidden="false">
-          <button class="portfolio-control-btn portfolio-control-btn--play" type="button" aria-label="Play or pause video" data-action="toggle-play">
-            <svg class="icon icon--play" width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-              <polygon points="5 3 19 12 5 21 5 3"></polygon>
-            </svg>
-            <svg class="icon icon--pause" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="display:none;">
-              <rect x="6" y="4" width="4" height="16"></rect>
-              <rect x="14" y="4" width="4" height="16"></rect>
-            </svg>
-          </button>
-          <button class="portfolio-control-btn portfolio-control-btn--mute" type="button" aria-label="Mute or unmute video" data-action="toggle-mute">
-            <svg class="icon icon--muted" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-              <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
-              <line x1="23" y1="9" x2="17" y2="15"></line>
-              <line x1="17" y1="9" x2="23" y2="15"></line>
-            </svg>
-            <svg class="icon icon--unmuted" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="display:none;">
-              <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
-              <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>
-            </svg>
-          </button>
-        </div>
+  // 2. Render Portfolio Items across all 4 categories
+  function renderProjectCard(p, globalIndex) {
+    const globalNumStr = String(globalIndex + 1).padStart(2, '0');
+    let badgeModifier = '';
+    if (p.categoryType === 'ai') badgeModifier = 'portfolio-item__category-badge--ai';
+    else if (p.categoryType === 'animation') badgeModifier = 'portfolio-item__category-badge--animation';
+    else if (p.categoryType === 'motion') badgeModifier = 'portfolio-item__category-badge--motion';
 
-        <div class="portfolio-item__number-tag" aria-hidden="true">${p.number}</div>
-      </div>
+    const numPrefix = p.categoryType === 'ai' ? 'AI ' : '';
 
-      <div class="portfolio-item__info">
-        <div class="portfolio-item__header">
-          <div class="portfolio-item__titles">
-            <span class="portfolio-item__num">// ${p.number}</span>
-            <h2 class="portfolio-item__title">${p.title}</h2>
+    return `
+      <article class="portfolio-item" id="${p.id}" data-category="${p.categoryType}" data-number="${p.number}" data-global-number="${globalNumStr}">
+        <div class="portfolio-item__video-wrapper">
+          <div class="portfolio-item__video-shimmer" aria-hidden="true"></div>
+          <video 
+            class="portfolio-item__video" 
+            data-src="${p.videoUrl}"
+            playsinline 
+            muted 
+            loop 
+            preload="metadata"
+            aria-label="${p.title} - ${p.category} preview"
+          ></video>
+          
+          <div class="portfolio-item__controls" aria-hidden="false">
+            <button class="portfolio-control-btn portfolio-control-btn--play" type="button" aria-label="Play or pause video" data-action="toggle-play">
+              <svg class="icon icon--play" width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                <polygon points="5 3 19 12 5 21 5 3"></polygon>
+              </svg>
+              <svg class="icon icon--pause" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="display:none;">
+                <rect x="6" y="4" width="4" height="16"></rect>
+                <rect x="14" y="4" width="4" height="16"></rect>
+              </svg>
+            </button>
+            <button class="portfolio-control-btn portfolio-control-btn--mute" type="button" aria-label="Mute or unmute video" data-action="toggle-mute">
+              <svg class="icon icon--muted" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                <line x1="23" y1="9" x2="17" y2="15"></line>
+                <line x1="17" y1="9" x2="23" y2="15"></line>
+              </svg>
+              <svg class="icon icon--unmuted" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="display:none;">
+                <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+              </svg>
+            </button>
           </div>
-          <span class="portfolio-item__year">${p.year}</span>
+
+          <div class="portfolio-item__number-tag" aria-hidden="true">${p.displayNumber || p.number}</div>
         </div>
-        <div class="portfolio-item__details">
-          <span class="portfolio-item__category">${p.category}</span>
-          <p class="portfolio-item__desc">${p.description}</p>
+
+        <div class="portfolio-item__info">
+          <div class="portfolio-item__header">
+            <div class="portfolio-item__titles">
+              <span class="portfolio-item__num">// ${numPrefix}${p.number}</span>
+              <h3 class="portfolio-item__title">${p.title}</h3>
+            </div>
+            <span class="portfolio-item__year">${p.year}</span>
+          </div>
+          <div class="portfolio-item__details">
+            <div class="portfolio-item__category-wrap">
+              <span class="portfolio-item__category-badge ${badgeModifier}">${p.category}</span>
+              <span class="portfolio-item__category-sub">${p.categoryLabel}</span>
+            </div>
+            <p class="portfolio-item__desc">${p.description}</p>
+          </div>
+        </div>
+      </article>
+    `;
+  }
+
+  const aiIntroCard = `
+    <article class="portfolio-item portfolio-item--intro" id="ai-works-intro" data-category="ai">
+      <div class="portfolio-intro-card">
+        <div class="portfolio-intro-card__header">
+          <span class="portfolio-intro-card__eyebrow">// CATEGORY 02</span>
+          <span class="portfolio-intro-card__badge">AI WORKS</span>
+        </div>
+        <div class="portfolio-intro-card__body">
+          <h3 class="portfolio-intro-card__title">AI Motion &amp; Generative Direction</h3>
+          <p class="portfolio-intro-card__desc">
+            A dedicated category exploring generative motion, organic synthetics, and computational cinematography crafted with distinct art direction.
+          </p>
+        </div>
+        <div class="portfolio-intro-card__footer">
+          <div class="portfolio-intro-card__rule">
+            <span class="rule__seg rule__seg--mid"></span>
+            <span class="rule__plus">+</span>
+            <span class="rule__seg rule__seg--mid"></span>
+          </div>
+          <span class="portfolio-intro-card__meta">03 Curated AI Works →</span>
         </div>
       </div>
     </article>
-  `).join('');
+  `;
 
-  // 3. Lazy Loading & Viewport Play/Pause Observer
+  const animationIntroCard = `
+    <article class="portfolio-item portfolio-item--intro" id="animation-intro" data-category="animation">
+      <div class="portfolio-intro-card">
+        <div class="portfolio-intro-card__header">
+          <span class="portfolio-intro-card__eyebrow">// CATEGORY 03</span>
+          <span class="portfolio-intro-card__badge" style="background: rgba(0,0,0,0.85); color:#fff;">ANIMATION</span>
+        </div>
+        <div class="portfolio-intro-card__body">
+          <h3 class="portfolio-intro-card__title">Character &amp; Dimensional Animation</h3>
+          <p class="portfolio-intro-card__desc">
+            Fluid simulations, character rhythm, and dimensional keyframe choreographies created for commercial, narrative, and editorial expressions.
+          </p>
+        </div>
+        <div class="portfolio-intro-card__footer">
+          <div class="portfolio-intro-card__rule">
+            <span class="rule__seg rule__seg--mid"></span>
+            <span class="rule__plus">+</span>
+            <span class="rule__seg rule__seg--mid"></span>
+          </div>
+          <span class="portfolio-intro-card__meta">04 Selected Works →</span>
+        </div>
+      </div>
+    </article>
+  `;
+
+  const motionIntroCard = `
+    <article class="portfolio-item portfolio-item--intro" id="motion-intro" data-category="motion">
+      <div class="portfolio-intro-card">
+        <div class="portfolio-intro-card__header">
+          <span class="portfolio-intro-card__eyebrow">// CATEGORY 04</span>
+          <span class="portfolio-intro-card__badge" style="background: rgba(0,0,0,0.12); color:#000;">MOTION DESIGN</span>
+        </div>
+        <div class="portfolio-intro-card__body">
+          <h3 class="portfolio-intro-card__title">Spatial Composition &amp; Kinetic Systems</h3>
+          <p class="portfolio-intro-card__desc">
+            Atmospheric lighting, geometric algorithmic curves, and kinetic typographic sequences designed for immersive brand and screen environments.
+          </p>
+        </div>
+        <div class="portfolio-intro-card__footer">
+          <div class="portfolio-intro-card__rule">
+            <span class="rule__seg rule__seg--mid"></span>
+            <span class="rule__plus">+</span>
+            <span class="rule__seg rule__seg--mid"></span>
+          </div>
+          <span class="portfolio-intro-card__meta">05 Selected Works →</span>
+        </div>
+      </div>
+    </article>
+  `;
+
+  const regularHtml = regularProjects.map((p, idx) => renderProjectCard(p, idx)).join('');
+  const aiHtml = aiProjects.map((p, idx) => renderProjectCard(p, idx + 3)).join('');
+  const animationHtml = animationProjects.map((p, idx) => renderProjectCard(p, idx + 6)).join('');
+  const motionHtml = motionProjects.map((p, idx) => renderProjectCard(p, idx + 10)).join('');
+
+  container.innerHTML = regularHtml + aiIntroCard + aiHtml + animationIntroCard + animationHtml + motionIntroCard + motionHtml;
+
+  // 3. Category Filter Logic (ALL / WORKS / AI WORKS / ANIMATION / MOTION DESIGN)
+  let activeFilter = 'all';
+
+  function applyFilter(filter) {
+    activeFilter = filter;
+
+    // Update filter navigation active state
+    filterBtns.forEach((btn) => {
+      const isActive = btn.dataset.filter === filter;
+      btn.classList.toggle('is-active', isActive);
+      btn.setAttribute('aria-pressed', isActive ? 'true' : 'false');
+    });
+
+    const allItems = container.querySelectorAll('.portfolio-item');
+
+    allItems.forEach((item) => {
+      const itemCat = item.dataset.category;
+      const isIntro = item.classList.contains('portfolio-item--intro');
+
+      let show = false;
+      if (filter === 'all') {
+        show = true;
+      } else {
+        // Direct category view: display project cards for the active category
+        show = itemCat === filter && !isIntro;
+      }
+
+      if (show) {
+        item.classList.remove('is-hidden');
+      } else {
+        item.classList.add('is-hidden');
+        // Pause any video that gets hidden
+        const video = item.querySelector('.portfolio-item__video');
+        if (video && !video.paused) {
+          video.pause();
+          const playIcon = item.querySelector('.icon--play');
+          const pauseIcon = item.querySelector('.icon--pause');
+          if (playIcon) playIcon.style.display = 'block';
+          if (pauseIcon) pauseIcon.style.display = 'none';
+        }
+      }
+    });
+
+    // Reset horizontal / vertical scroll to starting project smoothly
+    if (isHorizontalLayout()) {
+      container.scrollTo({ left: 0, behavior: 'smooth' });
+    }
+
+    // Update progress indicator
+    const totalDisplay = categoryTotals[filter] || '15';
+    if (progressText) {
+      progressText.textContent = `01 // ${totalDisplay}`;
+    }
+  }
+
+  filterBtns.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const filter = btn.dataset.filter;
+      if (filter) applyFilter(filter);
+    });
+  });
+
+  // 4. Lazy Loading & Viewport Play/Pause Observer
   const videoElements = container.querySelectorAll('.portfolio-item__video');
-  const itemElements = container.querySelectorAll('.portfolio-item');
+  const itemElements = container.querySelectorAll('.portfolio-item:not(.portfolio-item--intro)');
 
   const videoObserver = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
       const video = entry.target;
       const card = video.closest('.portfolio-item');
+      if (card && card.classList.contains('is-hidden')) return;
+
       const playIcon = card?.querySelector('.icon--play');
       const pauseIcon = card?.querySelector('.icon--pause');
 
@@ -107,7 +287,7 @@ export function initPortfolio() {
               }
             })
             .catch(() => {
-              // Browser policy fallback
+              // Browser autoplay policy fallback
             });
         }
       } else {
@@ -128,15 +308,26 @@ export function initPortfolio() {
 
   videoElements.forEach((video) => videoObserver.observe(video));
 
-  // 4. Progress tracker on scroll
-  const isHorizontalLayout = () => window.innerWidth >= 1024;
+  // 5. Progress Tracker on Scroll
+  function isHorizontalLayout() {
+    return window.innerWidth >= 1024;
+  }
 
   const itemObserver = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
       if (entry.isIntersecting) {
-        const num = entry.target.dataset.number;
-        if (progressText && num) {
-          progressText.textContent = `${num} // 09`;
+        const item = entry.target;
+        if (item.classList.contains('is-hidden')) return;
+
+        if (progressText) {
+          if (activeFilter === 'all') {
+            const globalNum = item.dataset.globalNumber;
+            if (globalNum) progressText.textContent = `${globalNum} // 15`;
+          } else {
+            const num = item.dataset.number;
+            const total = categoryTotals[activeFilter] || '15';
+            if (num) progressText.textContent = `${num} // ${total}`;
+          }
         }
       }
     });
@@ -147,7 +338,7 @@ export function initPortfolio() {
 
   itemElements.forEach((item) => itemObserver.observe(item));
 
-  // 5. Individual Video Controls Interaction
+  // 6. Individual Video Controls Interaction
   container.addEventListener('click', (e) => {
     const btn = e.target.closest('.portfolio-control-btn');
     if (!btn) return;
@@ -188,7 +379,7 @@ export function initPortfolio() {
     }
   });
 
-  // 6. Horizontal Navigation Buttons (Previous / Next)
+  // 7. Horizontal Navigation Buttons (Previous / Next)
   if (prevBtn && nextBtn) {
     prevBtn.addEventListener('click', () => {
       if (isHorizontalLayout()) {
@@ -207,8 +398,8 @@ export function initPortfolio() {
     });
   }
 
-  // 7. Mouse Wheel translation for Horizontal Track on Large Desktop
-  const horizontalSection = document.getElementById('portfolio-section');
+  // 8. Mouse Wheel translation for Horizontal Track on Large Desktop
+  const horizontalSection = document.getElementById('portfolio') || document.getElementById('portfolio-section');
   if (horizontalSection && container) {
     horizontalSection.addEventListener('wheel', (e) => {
       if (!isHorizontalLayout()) return;
@@ -227,13 +418,19 @@ export function initPortfolio() {
     }, { passive: false });
   }
 
-  // 8. Jump to project handler (from hero card or menu links)
+  // 9. Jump to Project Handler (from Hero Card Preview or External Anchors)
   document.querySelectorAll('[data-jump-to]').forEach((elem) => {
     elem.addEventListener('click', (e) => {
       e.preventDefault();
       const targetId = elem.getAttribute('href')?.replace('#', '') || elem.dataset.jumpTo;
       const targetElem = document.getElementById(targetId);
       if (!targetElem) return;
+
+      // If target item is in a category that's currently hidden by the filter, activate 'all'
+      const itemCategory = targetElem.dataset.category;
+      if (itemCategory && activeFilter !== 'all' && activeFilter !== itemCategory) {
+        applyFilter('all');
+      }
 
       if (isHorizontalLayout()) {
         const portfolioSec = document.getElementById('portfolio');
@@ -249,3 +446,4 @@ export function initPortfolio() {
     });
   });
 }
+

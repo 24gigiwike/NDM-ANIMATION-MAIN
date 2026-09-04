@@ -588,7 +588,53 @@ html, body {
 .portfolio-header__controls {
   display: flex;
   align-items: center;
-  gap: 1.5rem;
+  flex-wrap: wrap;
+  gap: 1.25rem;
+}
+
+/* MINIMAL CATEGORY FILTER NAVIGATION */
+.portfolio-filters {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.25rem;
+  background: rgba(0, 0, 0, 0.04);
+  border-radius: 9999px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  max-width: 100%;
+  overflow-x: auto;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+}
+
+.portfolio-filters::-webkit-scrollbar {
+  display: none;
+}
+
+.portfolio-filter-btn {
+  border: none;
+  background: transparent;
+  padding: 0.35rem 0.85rem;
+  border-radius: 9999px;
+  font-size: 0.6875rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: rgba(0, 0, 0, 0.55);
+  cursor: pointer;
+  transition: all 200ms ease;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.portfolio-filter-btn:hover {
+  color: #000;
+}
+
+.portfolio-filter-btn.is-active {
+  background: #000;
+  color: #fff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
 }
 
 .portfolio-header__progress {
@@ -665,6 +711,11 @@ html, body {
   display: flex;
   flex-direction: column;
   gap: 1.25rem;
+  transition: opacity 250ms ease, transform 250ms ease;
+}
+
+.portfolio-item.is-hidden {
+  display: none !important;
 }
 
 @media (min-width: 1024px) {
@@ -678,6 +729,95 @@ html, body {
   .portfolio-item {
     flex: 0 0 840px;
   }
+}
+
+/* TRANSITIONAL CATEGORY INTRO CARD (IN HORIZONTAL & VERTICAL TRACK) */
+.portfolio-item--intro {
+  display: flex;
+  flex-direction: column;
+}
+
+.portfolio-intro-card {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.55);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.04);
+  padding: 2.25rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-sizing: border-box;
+}
+
+.portfolio-intro-card__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.portfolio-intro-card__eyebrow {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: rgba(0, 0, 0, 0.45);
+  font-weight: 500;
+}
+
+.portfolio-intro-card__badge {
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 0.25rem 0.65rem;
+  border-radius: 9999px;
+  background: #000;
+  color: #fff;
+}
+
+.portfolio-intro-card__title {
+  font-size: 1.85rem;
+  font-weight: 300;
+  letter-spacing: -0.03em;
+  line-height: 1.15;
+  color: #000;
+  margin: 0 0 0.75rem;
+}
+
+.portfolio-intro-card__desc {
+  font-size: 0.875rem;
+  line-height: 1.6;
+  color: rgba(0, 0, 0, 0.65);
+  max-width: 520px;
+  margin: 0;
+}
+
+.portfolio-intro-card__footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.portfolio-intro-card__rule {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  flex: 1;
+  max-width: 140px;
+}
+
+.portfolio-intro-card__meta {
+  font-size: 0.75rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: rgba(0, 0, 0, 0.5);
+  font-weight: 500;
 }
 
 .portfolio-item__video-wrapper {
@@ -810,7 +950,7 @@ html, body {
 .portfolio-item__details {
   display: flex;
   flex-direction: column;
-  gap: 0.25rem;
+  gap: 0.5rem;
 }
 
 @media (min-width: 640px) {
@@ -819,6 +959,49 @@ html, body {
     align-items: baseline;
     justify-content: space-between;
   }
+}
+
+.portfolio-item__category-wrap {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.portfolio-item__category-badge {
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 0.2rem 0.55rem;
+  border-radius: 4px;
+  background: rgba(0, 0, 0, 0.06);
+  color: rgba(0, 0, 0, 0.75);
+}
+
+.portfolio-item__category-badge--ai {
+  background: #000;
+  color: #fff;
+  letter-spacing: 0.09em;
+}
+
+.portfolio-item__category-badge--animation {
+  background: rgba(0, 0, 0, 0.82);
+  color: #fff;
+  letter-spacing: 0.07em;
+}
+
+.portfolio-item__category-badge--motion {
+  background: rgba(0, 0, 0, 0.1);
+  color: rgba(0, 0, 0, 0.88);
+  letter-spacing: 0.07em;
+}
+
+.portfolio-item__category-sub {
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: rgba(0, 0, 0, 0.85);
+  letter-spacing: -0.01em;
 }
 
 .portfolio-item__category {
