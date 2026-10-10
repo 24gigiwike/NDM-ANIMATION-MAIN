@@ -3,16 +3,17 @@
  * Easily update, add, or reorder projects here.
  */
 
-// 1. Regular Animation Works (3 Projects)
+
+// 1. Regular Animation Videos (3 Projects)
 export const regularProjects = [
   {
     id: "work-01",
     number: "01",
     displayNumber: "01",
-    title: "Selected Work 01",
+    title: "Selected Video 01",
     videoUrl: "https://res.cloudinary.com/dtkluxukm/video/upload/v1788372074/VID-20260321-WA0019_jy2ypy.mp4",
     categoryType: "works",
-    category: "WORKS",
+    category: "VIDEOS",
     categoryLabel: "Animation & Motion",
     year: "2026",
     description: "Kinetic choreography, rhythm, and visual storytelling in continuous motion."
@@ -21,10 +22,10 @@ export const regularProjects = [
     id: "work-02",
     number: "02",
     displayNumber: "02",
-    title: "Selected Work 02",
+    title: "Selected Video 02",
     videoUrl: "https://res.cloudinary.com/dtkluxukm/video/upload/v1788371985/All_Femme_Ad_1_ujoy1o.mp4",
     categoryType: "works",
-    category: "WORKS",
+    category: "VIDEOS",
     categoryLabel: "Commercial & Editorial Motion",
     year: "2026",
     description: "Stylized kinetic timing, precision pacing, and character motion design."
@@ -33,17 +34,17 @@ export const regularProjects = [
     id: "work-03",
     number: "03",
     displayNumber: "03",
-    title: "Selected Work 03",
+    title: "Selected Video 03",
     videoUrl: "https://res.cloudinary.com/dtkluxukm/video/upload/v1788372075/AD_coconut_oil_vid_xynxd7.mp4",
     categoryType: "works",
-    category: "WORKS",
+    category: "VIDEOS",
     categoryLabel: "Brand & Tactile Motion",
     year: "2026",
     description: "Tactile motion choreography with fluid physical dynamics and dimensional light."
   }
 ];
 
-// 2. AI Works (3 Projects)
+// 2. AI Videos (3 Projects)
 export const aiProjects = [
   {
     id: "ai-work-01",
@@ -52,7 +53,7 @@ export const aiProjects = [
     title: "Generative Motion 01",
     videoUrl: "https://res.cloudinary.com/dtkluxukm/video/upload/v1788372015/Video_for_Skin_care_brand_ctqd9s.mp4",
     categoryType: "ai",
-    category: "AI WORKS",
+    category: "AI VIDEOS",
     categoryLabel: "Generative Motion & Direction",
     year: "2026",
     description: "Exploration of generative motion, organic textures, and synthetic cinematography."
@@ -64,7 +65,7 @@ export const aiProjects = [
     title: "Generative Motion 02",
     videoUrl: "https://res.cloudinary.com/dtkluxukm/video/upload/v1788372014/Video_for_Hair_Care_Brand_rujuce.mp4",
     categoryType: "ai",
-    category: "AI WORKS",
+    category: "AI VIDEOS",
     categoryLabel: "Fluid Velocity & Strand Dynamics",
     year: "2026",
     description: "Fluid velocity study and kinetic strand dynamics under directional studio lighting."
@@ -76,7 +77,7 @@ export const aiProjects = [
     title: "Generative Motion 03",
     videoUrl: "https://res.cloudinary.com/dtkluxukm/video/upload/v1788372014/Video_for_Web_Designer_ugbofi.mp4",
     categoryType: "ai",
-    category: "AI WORKS",
+    category: "AI VIDEOS",
     categoryLabel: "Spatial & Dimensional Architecture",
     year: "2026",
     description: "Dimensional study balancing structural geometry, camera velocity, and spatial flow."

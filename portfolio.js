@@ -19,6 +19,7 @@ export function initPortfolio() {
   const categoryTotals = {
     all: '15',
     works: '03',
+    videos: '03',
     ai: '03',
     animation: '04',
     motion: '05'
@@ -35,7 +36,7 @@ export function initPortfolio() {
     previewList.innerHTML = previewItems.map((p) => `
       <a href="#${p.id}" class="finding finding--link" data-jump-to="${p.id}" data-category="${p.categoryType}">
         <div class="finding__head">
-          <h3 class="finding__title">${p.category === 'WORKS' ? 'WORK' : p.category} ${p.number}</h3>
+          <h3 class="finding__title">${(p.category === 'WORKS' || p.category === 'VIDEOS') ? 'VIDEO' : p.category} ${p.number}</h3>
           <span class="finding__meta">${p.category}</span>
         </div>
         <p class="finding__text">${p.description}</p>
@@ -111,10 +112,10 @@ export function initPortfolio() {
       <div class="portfolio-intro-card">
         <div class="portfolio-intro-card__header">
           <span class="portfolio-intro-card__eyebrow">// SECTION 01</span>
-          <span class="portfolio-intro-card__category-title">WORKS</span>
+          <span class="portfolio-intro-card__category-title">VIDEOS</span>
         </div>
         <div class="portfolio-intro-card__body">
-          <h3 class="portfolio-intro-card__title">Selected Animation &amp; Commercial Works</h3>
+          <h3 class="portfolio-intro-card__title">Selected Animation &amp; Commercial Videos</h3>
           <div class="portfolio-intro-card__divider" aria-hidden="true"></div>
           <p class="portfolio-intro-card__desc">
             Kinetic choreography, rhythm, and visual storytelling crafted across commercial motion design, brand narratives, and character dynamics.
@@ -126,7 +127,7 @@ export function initPortfolio() {
             <span class="rule__plus">+</span>
             <span class="rule__seg rule__seg--mid"></span>
           </div>
-          <span class="portfolio-intro-card__meta">03 Studio Works →</span>
+          <span class="portfolio-intro-card__meta">03 Studio Videos →</span>
         </div>
       </div>
     </article>
@@ -137,7 +138,7 @@ export function initPortfolio() {
       <div class="portfolio-intro-card">
         <div class="portfolio-intro-card__header">
           <span class="portfolio-intro-card__eyebrow">// SECTION 02</span>
-          <span class="portfolio-intro-card__category-title">AI WORKS</span>
+          <span class="portfolio-intro-card__category-title">AI VIDEOS</span>
         </div>
         <div class="portfolio-intro-card__body">
           <h3 class="portfolio-intro-card__title">Generative Motion &amp; Synthetic Cinematography</h3>
@@ -152,7 +153,7 @@ export function initPortfolio() {
             <span class="rule__plus">+</span>
             <span class="rule__seg rule__seg--mid"></span>
           </div>
-          <span class="portfolio-intro-card__meta">03 Studio Studies →</span>
+          <span class="portfolio-intro-card__meta">03 Studio Videos →</span>
         </div>
       </div>
     </article>
@@ -178,7 +179,7 @@ export function initPortfolio() {
             <span class="rule__plus">+</span>
             <span class="rule__seg rule__seg--mid"></span>
           </div>
-          <span class="portfolio-intro-card__meta">04 Selected Works →</span>
+          <span class="portfolio-intro-card__meta">04 Selected Videos →</span>
         </div>
       </div>
     </article>
@@ -204,7 +205,7 @@ export function initPortfolio() {
             <span class="rule__plus">+</span>
             <span class="rule__seg rule__seg--mid"></span>
           </div>
-          <span class="portfolio-intro-card__meta">05 Selected Works →</span>
+          <span class="portfolio-intro-card__meta">05 Selected Videos →</span>
         </div>
       </div>
     </article>
