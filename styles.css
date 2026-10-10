@@ -97,7 +97,7 @@ button, input, select, textarea {
   width: 100%;
   min-height: 100vh;
   min-height: 100dvh;
-  background-color: #FAF8DD;
+  background-color: #f3f1d8;
   color: var(--c-ink);
   pointer-events: none;
   isolation: isolate;
