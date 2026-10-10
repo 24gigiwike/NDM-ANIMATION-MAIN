@@ -116,12 +116,34 @@ if (contactForm) {
   });
 }
 
+// Ensure hero video loops continuously and autoplays
+function setupHeroVideo() {
+  const video = document.getElementById('hero-center-video');
+  if (!video) return;
+  video.muted = true;
+  video.loop = true;
+  const playVideo = () => {
+    if (video.paused) {
+      video.play().catch(() => {});
+    }
+  };
+  playVideo();
+  video.addEventListener('ended', () => {
+    video.currentTime = 0;
+    playVideo();
+  });
+  document.addEventListener('touchstart', playVideo, { once: true, passive: true });
+  document.addEventListener('click', playVideo, { once: true, passive: true });
+}
+
 // Initialize portfolio when DOM is ready
 document.addEventListener('DOMContentLoaded', () => {
   initPortfolio();
+  setupHeroVideo();
 });
 
 // Fallback if DOM is already loaded
 if (document.readyState === 'interactive' || document.readyState === 'complete') {
   initPortfolio();
+  setupHeroVideo();
 }

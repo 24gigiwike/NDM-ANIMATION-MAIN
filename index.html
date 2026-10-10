@@ -4,75 +4,15 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>NDM ANIMATION — Stories in Motion</title>
-    <meta name="description" content="Portfolio website for NDM ANIMATION featuring the central iridescent liquid-glass hero visual, 15 curated works across Animation, Motion Design, AI Works, and Selected Works with horizontal/vertical exhibition layouts." />
+    <meta name="description" content="Portfolio website for NDM ANIMATION featuring 15 curated works across Animation, Motion Design, AI Works, and Selected Works with horizontal/vertical exhibition layouts." />
     <meta property="og:title" content="NDM ANIMATION — Stories in Motion" />
-    <meta property="og:description" content="Portfolio website for NDM ANIMATION featuring the central iridescent liquid-glass hero visual, 15 curated works across Animation, Motion Design, AI Works, and Selected Works with horizontal/vertical exhibition layouts." />
+    <meta property="og:description" content="Portfolio website for NDM ANIMATION featuring 15 curated works across Animation, Motion Design, AI Works, and Selected Works with horizontal/vertical exhibition layouts." />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="./styles.css" />
   </head>
   <body>
-    <!-- LOCKED DESIGN ASSET: Background Video with Central Iridescent Glass Bubble -->
-    <video id="bg-video" class="bg-video" aria-hidden="true"
-           autoplay muted loop playsinline preload="auto"
-           src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260816_125506_3a597378-ec85-4ebd-bd22-03b45508ac62.mp4"></video>
-
-    <!-- LOCKED DESIGN ASSET: Liquid-Glass Refraction SVG Filter -->
-    <svg class="glass-defs" width="0" height="0" aria-hidden="true" focusable="false">
-      <defs>
-        <filter id="liquid-glass-refraction"
-                x="-30%" y="-30%" width="160%" height="160%"
-                color-interpolation-filters="sRGB">
-
-          <feTurbulence type="fractalNoise" baseFrequency="0.012 0.015" numOctaves="3" result="noise" />
-
-          <feColorMatrix in="SourceAlpha" type="matrix" result="boosted_alpha"
-            values="0 0 0 0 0
-                    0 0 0 0 0
-                    0 0 0 0 0
-                    0 0 0 100 0" />
-
-          <feGaussianBlur in="boosted_alpha" stdDeviation="45" result="blurred_alpha" />
-
-          <feComponentTransfer in="blurred_alpha" result="edge_mask">
-            <feFuncA type="linear" slope="-1.3" intercept="1" />
-          </feComponentTransfer>
-
-          <feComposite in="noise" in2="edge_mask" operator="arithmetic"
-                       k1="1" k2="0" k3="0" k4="0" result="masked_noise" />
-
-          <!-- chromatic dispersion: one displacement pass per channel -->
-          <feDisplacementMap in="SourceGraphic" in2="masked_noise" scale="65"
-                             xChannelSelector="R" yChannelSelector="G" result="red_displaced" />
-          <feColorMatrix in="red_displaced" type="matrix" result="red"
-            values="1 0 0 0 0
-                    0 0 0 0 0
-                    0 0 0 0 0
-                    0 0 0 1 0" />
-
-          <feDisplacementMap in="SourceGraphic" in2="masked_noise" scale="56"
-                             xChannelSelector="R" yChannelSelector="G" result="green_displaced" />
-          <feColorMatrix in="green_displaced" type="matrix" result="green"
-            values="0 0 0 0 0
-                    0 1 0 0 0
-                    0 0 0 0 0
-                    0 0 0 1 0" />
-
-          <feDisplacementMap in="SourceGraphic" in2="masked_noise" scale="47"
-                             xChannelSelector="R" yChannelSelector="G" result="blue_displaced" />
-          <feColorMatrix in="blue_displaced" type="matrix" result="blue"
-            values="0 0 0 0 0
-                    0 0 0 0 0
-                    0 0 1 0 0
-                    0 0 0 1 0" />
-
-          <feBlend in="red" in2="green" mode="screen" result="rg" />
-          <feBlend in="rg" in2="blue" mode="screen" result="chromatic_dispersion" />
-        </filter>
-      </defs>
-    </svg>
-
     <div class="app-wrapper">
       <!-- 1. HERO / HOME SECTION -->
       <section class="hero" id="home">
@@ -135,9 +75,23 @@
             </a>
           </div>
 
-          <!-- Hero Right-Side Refractive Liquid Glass Window -->
+          <!-- Hero Center Video (Between NDM ANIMATION hero text and Selected work) -->
+          <div class="hero-video-wrapper">
+            <video
+              class="hero-video"
+              id="hero-center-video"
+              src="https://res.cloudinary.com/dtkluxukm/video/upload/v1791638269/gemini_generated_video_bdef1db9_ogqon1.mp4"
+              autoplay
+              muted
+              loop
+              playsinline
+              preload="auto"
+              aria-label="NDM Animation featured showcase video"
+            ></video>
+          </div>
+
+          <!-- Hero Right-Side Glass Window -->
           <aside class="card group" data-glass-card>
-            <div id="dup-video-container"><canvas id="dup-image"></canvas></div>
             <div class="card__frost" aria-hidden="true"></div>
 
             <div class="card__head">
@@ -318,10 +272,22 @@
             </p>
             <div class="contact-links">
               <a class="contact-email-link" href="mailto:hello@ndmanimation.com">hello@ndmanimation.com</a>
-              <div class="contact-socials">
-                <a class="contact-social-link" href="#" target="_blank" rel="noopener">Instagram ↗</a>
-                <a class="contact-social-link" href="#" target="_blank" rel="noopener">LinkedIn ↗</a>
-                <a class="contact-social-link" href="#" target="_blank" rel="noopener">Vimeo ↗</a>
+              <div class="contact-socials" aria-label="Social links">
+                <a class="contact-social-link" href="#" target="_blank" rel="noopener noreferrer" aria-label="TikTok" title="TikTok">
+                  <svg class="contact-social-icon" width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                    <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1v-3.5a6.37 6.37 0 0 0-.79-.05A6.34 6.34 0 0 0 3 15.28 6.34 6.34 0 0 0 9.34 21.6a6.34 6.34 0 0 0 6.34-6.32V8.78a8.21 8.21 0 0 0 4.91 1.63V6.96c-.34 0-.68-.09-1-.27z"/>
+                  </svg>
+                </a>
+                <a class="contact-social-link" href="#" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" title="LinkedIn">
+                  <svg class="contact-social-icon" width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                    <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452z"/>
+                  </svg>
+                </a>
+                <a class="contact-social-link" href="#" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" title="WhatsApp">
+                  <svg class="contact-social-icon" width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                    <path d="M17.472 14.382c-.301-.15-1.78-.878-2.056-.979-.275-.1-.475-.15-.675.15-.2.301-.775.979-.95 1.18-.175.2-.35.225-.651.075-.301-.15-1.27-.468-2.42-1.493-.894-.798-1.498-1.784-1.673-2.085-.175-.3-.019-.462.132-.612.135-.135.301-.35.451-.526.15-.175.2-.3.3-.5.1-.2.05-.375-.025-.525-.075-.15-.675-1.628-.925-2.23-.243-.585-.49-.506-.675-.515-.175-.008-.375-.01-.575-.01s-.525.075-.8.375c-.275.3-1.05 1.027-1.05 2.504s1.075 2.905 1.225 3.106c.15.2 2.115 3.23 5.124 4.53 3.01 1.3 3.01.867 3.56.812.55-.054 1.78-.727 2.03-1.43.25-.703.25-1.305.175-1.43-.075-.125-.275-.2-.575-.35zM12.04 2C6.52 2 2.03 6.49 2.03 12.01c0 1.94.55 3.83 1.6 5.46L2 22l4.67-1.59a10.02 10.02 0 0 0 5.37 1.55h.01c5.52 0 10.01-4.49 10.01-10.01 0-2.67-1.04-5.19-2.93-7.08A9.95 9.95 0 0 0 12.04 2zm0 18.17h-.01a8.3 8.3 0 0 1-4.24-1.16l-.3-.18-3.15 1.07 1.06-3.07-.2-.31a8.27 8.27 0 0 1-1.3-4.51c0-4.57 3.72-8.29 8.29-8.29 2.21 0 4.3 0.86 5.86 2.43a8.23 8.23 0 0 1 2.43 5.86c0 4.57-3.72 8.28-8.29 8.28z"/>
+                  </svg>
+                </a>
               </div>
             </div>
           </div>
@@ -434,7 +400,6 @@
     </div>
 
     <!-- Scripts -->
-    <script type="module" src="./glass-card.js"></script>
     <script type="module" src="./ui.js"></script>
   </body>
 </html>
