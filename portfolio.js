@@ -17,10 +17,10 @@ export function initPortfolio() {
   if (!container) return;
 
   const categoryTotals = {
-    all: '15',
+    all: '16',
     works: '03',
     videos: '03',
-    ai: '03',
+    ai: '04',
     animation: '04',
     motion: '05'
   };
@@ -50,7 +50,7 @@ export function initPortfolio() {
 
     return `
       <article class="portfolio-item" id="${p.id}" data-category="${p.categoryType}" data-number="${p.number}" data-global-number="${globalNumStr}">
-        <div class="portfolio-item__video-wrapper">
+        <div class="portfolio-item__video-wrapper" data-action="open-modal" data-project-id="${p.id}" role="button" tabindex="0" aria-label="Open ${p.title} video in player modal">
           <div class="portfolio-item__video-shimmer" aria-hidden="true"></div>
           <video 
             class="portfolio-item__video" 
@@ -62,17 +62,22 @@ export function initPortfolio() {
             aria-label="${p.title} - ${p.category} preview"
           ></video>
           
+          <div class="portfolio-item__play-overlay" aria-hidden="true">
+            <span class="portfolio-item__play-pill">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+                <polygon points="6 3 20 12 6 21 6 3"></polygon>
+              </svg>
+              <span>WATCH VIDEO</span>
+            </span>
+          </div>
+
           <div class="portfolio-item__controls" aria-hidden="false">
-            <button class="portfolio-control-btn portfolio-control-btn--play" type="button" aria-label="Play or pause video" data-action="toggle-play">
+            <button class="portfolio-control-btn portfolio-control-btn--play" type="button" aria-label="Play video in modal" data-action="open-modal" data-project-id="${p.id}">
               <svg class="icon icon--play" width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
                 <polygon points="5 3 19 12 5 21 5 3"></polygon>
               </svg>
-              <svg class="icon icon--pause" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="display:none;">
-                <rect x="6" y="4" width="4" height="16"></rect>
-                <rect x="14" y="4" width="4" height="16"></rect>
-              </svg>
             </button>
-            <button class="portfolio-control-btn portfolio-control-btn--mute" type="button" aria-label="Mute or unmute video" data-action="toggle-mute">
+            <button class="portfolio-control-btn portfolio-control-btn--mute" type="button" aria-label="Mute or unmute preview audio" data-action="toggle-mute">
               <svg class="icon icon--muted" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
                 <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
                 <line x1="23" y1="9" x2="17" y2="15"></line>
@@ -153,7 +158,7 @@ export function initPortfolio() {
             <span class="rule__plus">+</span>
             <span class="rule__seg rule__seg--mid"></span>
           </div>
-          <span class="portfolio-intro-card__meta">03 Studio Videos →</span>
+          <span class="portfolio-intro-card__meta">04 Studio Videos →</span>
         </div>
       </div>
     </article>
@@ -266,7 +271,7 @@ export function initPortfolio() {
     }
 
     // Update progress indicator
-    const totalDisplay = categoryTotals[filter] || '15';
+    const totalDisplay = categoryTotals[filter] || '16';
     if (progressText) {
       progressText.textContent = `01 // ${totalDisplay}`;
     }
@@ -344,10 +349,10 @@ export function initPortfolio() {
         if (progressText) {
           if (activeFilter === 'all') {
             const globalNum = item.dataset.globalNumber;
-            if (globalNum) progressText.textContent = `${globalNum} // 15`;
+            if (globalNum) progressText.textContent = `${globalNum} // 16`;
           } else {
             const num = item.dataset.number;
-            const total = categoryTotals[activeFilter] || '15';
+            const total = categoryTotals[activeFilter] || '16';
             if (num) progressText.textContent = `${num} // ${total}`;
           }
         }
@@ -360,46 +365,221 @@ export function initPortfolio() {
 
   itemElements.forEach((item) => itemObserver.observe(item));
 
-  // 6. Individual Video Controls Interaction
+  // 6. Individual Video Controls Interaction & Modal Triggers
   container.addEventListener('click', (e) => {
-    const btn = e.target.closest('.portfolio-control-btn');
-    if (!btn) return;
-
-    const card = btn.closest('.portfolio-item');
-    if (!card) return;
-
-    const video = card.querySelector('.portfolio-item__video');
-    if (!video) return;
-
-    const action = btn.dataset.action;
-
-    if (action === 'toggle-play') {
-      const playIcon = btn.querySelector('.icon--play');
-      const pauseIcon = btn.querySelector('.icon--pause');
-
-      if (video.paused) {
-        video.play();
-        if (playIcon) playIcon.style.display = 'none';
-        if (pauseIcon) pauseIcon.style.display = 'block';
-      } else {
-        video.pause();
-        if (playIcon) playIcon.style.display = 'block';
-        if (pauseIcon) pauseIcon.style.display = 'none';
+    // Check if clicked the mute button
+    const muteBtn = e.target.closest('[data-action="toggle-mute"]');
+    if (muteBtn) {
+      e.stopPropagation();
+      const card = muteBtn.closest('.portfolio-item');
+      const video = card?.querySelector('.portfolio-item__video');
+      if (video) {
+        video.muted = !video.muted;
+        const mutedIcon = muteBtn.querySelector('.icon--muted');
+        const unmutedIcon = muteBtn.querySelector('.icon--unmuted');
+        if (video.muted) {
+          if (mutedIcon) mutedIcon.style.display = 'block';
+          if (unmutedIcon) unmutedIcon.style.display = 'none';
+        } else {
+          if (mutedIcon) mutedIcon.style.display = 'none';
+          if (unmutedIcon) unmutedIcon.style.display = 'block';
+        }
       }
-    } else if (action === 'toggle-mute') {
-      const mutedIcon = btn.querySelector('.icon--muted');
-      const unmutedIcon = btn.querySelector('.icon--unmuted');
+      return;
+    }
 
-      video.muted = !video.muted;
-      if (video.muted) {
-        if (mutedIcon) mutedIcon.style.display = 'block';
-        if (unmutedIcon) unmutedIcon.style.display = 'none';
-      } else {
-        if (mutedIcon) mutedIcon.style.display = 'none';
-        if (unmutedIcon) unmutedIcon.style.display = 'block';
+    // Clicking anywhere on the video wrapper, play button, or video opens modal
+    const videoWrapper = e.target.closest('.portfolio-item__video-wrapper');
+    if (videoWrapper) {
+      const projectId = videoWrapper.dataset.projectId;
+      if (projectId) {
+        openModalById(projectId);
       }
     }
   });
+
+  // Keyboard accessibility on video wrappers
+  container.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      const wrapper = e.target.closest('.portfolio-item__video-wrapper');
+      if (wrapper && wrapper.dataset.projectId) {
+        e.preventDefault();
+        openModalById(wrapper.dataset.projectId);
+      }
+    }
+  });
+
+  // 10. Video Exhibition Modal Controller
+  const modal = document.getElementById('video-modal');
+  const modalVideo = document.getElementById('modal-video-element');
+  const modalCategory = document.getElementById('modal-project-category');
+  const modalNumber = document.getElementById('modal-project-number');
+  const modalTitle = document.getElementById('modal-project-title');
+  const modalDesc = document.getElementById('modal-project-desc');
+  const modalCounter = document.getElementById('modal-counter');
+  const modalPrevBtn = document.getElementById('modal-prev-btn');
+  const modalNextBtn = document.getElementById('modal-next-btn');
+
+  let currentModalIndex = 0;
+
+  const heroShowcaseItem = {
+    id: 'hero-video',
+    number: '00',
+    title: 'NDM ANIMATION — Featured Studio Showcase',
+    category: 'FEATURED SHOWCASE',
+    categoryLabel: 'Studio Direction & Motion Aesthetics',
+    year: '2026',
+    videoUrl: 'https://res.cloudinary.com/dtkluxukm/video/upload/v1791638269/gemini_generated_video_bdef1db9_ogqon1.mp4',
+    description: 'Signature kinetic timing, fluid dynamics, and spatial animation direction.'
+  };
+
+  function pauseAllInlineVideos() {
+    container.querySelectorAll('.portfolio-item__video').forEach((vid) => {
+      if (!vid.paused) {
+        vid.pause();
+        const card = vid.closest('.portfolio-item');
+        const playIcon = card?.querySelector('.icon--play');
+        const pauseIcon = card?.querySelector('.icon--pause');
+        if (playIcon) playIcon.style.display = 'block';
+        if (pauseIcon) pauseIcon.style.display = 'none';
+      }
+    });
+    const heroVid = document.getElementById('hero-center-video');
+    if (heroVid && !heroVid.paused) {
+      heroVid.pause();
+    }
+  }
+
+  function setModalData(project, indexNumber, totalCount) {
+    if (!modal || !modalVideo) return;
+    if (modalCategory) modalCategory.textContent = project.category || 'VIDEO';
+    if (modalNumber) modalNumber.textContent = project.number || '01';
+    if (modalTitle) modalTitle.textContent = project.title || 'Studio Video';
+    if (modalDesc) modalDesc.textContent = project.description || '';
+    if (modalCounter) {
+      const idxStr = String(indexNumber).padStart(2, '0');
+      const totalStr = String(totalCount).padStart(2, '0');
+      modalCounter.textContent = `${idxStr} / ${totalStr}`;
+    }
+
+    modalVideo.pause();
+    modalVideo.src = project.videoUrl;
+    modalVideo.currentTime = 0;
+    modalVideo.muted = false;
+
+    const playPromise = modalVideo.play();
+    if (playPromise !== undefined) {
+      playPromise.catch(() => {
+        // Fallback for browsers requiring initial user interaction/muted
+        modalVideo.muted = true;
+        modalVideo.play().catch(() => {});
+      });
+    }
+  }
+
+  function openModalByProject(project, index) {
+    if (!modal) return;
+    pauseAllInlineVideos();
+    currentModalIndex = index >= 0 ? index : 0;
+    setModalData(project, currentModalIndex + 1, projects.length);
+    modal.classList.add('is-open');
+    modal.setAttribute('aria-hidden', 'false');
+    document.body.classList.add('modal-open');
+  }
+
+  function openModalById(projectId) {
+    if (projectId === 'hero-video') {
+      if (!modal) return;
+      pauseAllInlineVideos();
+      currentModalIndex = -1;
+      setModalData(heroShowcaseItem, 1, 1);
+      modal.classList.add('is-open');
+      modal.setAttribute('aria-hidden', 'false');
+      document.body.classList.add('modal-open');
+      return;
+    }
+
+    const idx = projects.findIndex((p) => p.id === projectId);
+    if (idx !== -1) {
+      openModalByProject(projects[idx], idx);
+    }
+  }
+
+  function closeModal() {
+    if (!modal) return;
+    if (modalVideo) {
+      modalVideo.pause();
+      modalVideo.removeAttribute('src');
+      modalVideo.load();
+    }
+    modal.classList.remove('is-open');
+    modal.setAttribute('aria-hidden', 'true');
+    document.body.classList.remove('modal-open');
+
+    // Resume hero video autoplay if user returns to page
+    const heroVid = document.getElementById('hero-center-video');
+    if (heroVid) {
+      heroVid.play().catch(() => {});
+    }
+  }
+
+  function stepModalVideo(direction) {
+    if (currentModalIndex === -1) {
+      currentModalIndex = direction > 0 ? 0 : projects.length - 1;
+    } else {
+      currentModalIndex = (currentModalIndex + direction + projects.length) % projects.length;
+    }
+    const nextProj = projects[currentModalIndex];
+    if (nextProj) {
+      setModalData(nextProj, currentModalIndex + 1, projects.length);
+    }
+  }
+
+  // Hook modal interactive events
+  if (modal) {
+    modal.querySelectorAll('[data-close-modal]').forEach((el) => {
+      el.addEventListener('click', closeModal);
+    });
+
+    if (modalPrevBtn) {
+      modalPrevBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        stepModalVideo(-1);
+      });
+    }
+
+    if (modalNextBtn) {
+      modalNextBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        stepModalVideo(1);
+      });
+    }
+
+    document.addEventListener('keydown', (e) => {
+      if (!modal.classList.contains('is-open')) return;
+      if (e.key === 'Escape') {
+        closeModal();
+      } else if (e.key === 'ArrowLeft') {
+        stepModalVideo(-1);
+      } else if (e.key === 'ArrowRight') {
+        stepModalVideo(1);
+      }
+    });
+  }
+
+  // Hero video modal trigger
+  const heroWrapper = document.querySelector('[data-action="open-hero-modal"]');
+  if (heroWrapper) {
+    heroWrapper.addEventListener('click', () => {
+      openModalById('hero-video');
+    });
+    heroWrapper.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        openModalById('hero-video');
+      }
+    });
+  }
 
   // 7. Horizontal Navigation Buttons (Previous / Next)
   if (prevBtn && nextBtn) {

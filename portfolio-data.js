@@ -44,7 +44,7 @@ export const regularProjects = [
   }
 ];
 
-// 2. AI Videos (3 Projects)
+// 2. AI Videos (4 Projects)
 export const aiProjects = [
   {
     id: "ai-work-01",
@@ -81,6 +81,18 @@ export const aiProjects = [
     categoryLabel: "Spatial & Dimensional Architecture",
     year: "2026",
     description: "Dimensional study balancing structural geometry, camera velocity, and spatial flow."
+  },
+  {
+    id: "ai-work-04",
+    number: "04",
+    displayNumber: "04",
+    title: "Generative Motion 04",
+    videoUrl: "https://res.cloudinary.com/dtkluxukm/video/upload/v1791642310/video23_l2co2l.mp4",
+    categoryType: "ai",
+    category: "AI VIDEOS",
+    categoryLabel: "Synthetic Cinematography & Physics",
+    year: "2026",
+    description: "Algorithmic kinetic choreography exploring synthetic textures, illumination, and dimensional motion."
   }
 ];
 
@@ -200,7 +212,7 @@ export const motionProjects = [
   }
 ];
 
-// 5. Unified Active Projects (15 Total: 3 Regular + 3 AI + 4 Animation + 5 Motion Design)
+// 5. Unified Active Projects (16 Total: 3 Regular + 4 AI + 4 Animation + 5 Motion Design)
 export const projects = [
   ...regularProjects,
   ...aiProjects,

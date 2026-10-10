@@ -4,9 +4,9 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>NDM ANIMATION — Stories in Motion</title>
-    <meta name="description" content="Portfolio website for NDM ANIMATION featuring 15 curated videos across Animation, Motion Design, AI Videos, and Selected Videos with horizontal/vertical exhibition layouts." />
+    <meta name="description" content="Portfolio website for NDM ANIMATION featuring 16 curated videos across Animation, Motion Design, AI Videos, and Selected Videos with horizontal/vertical exhibition layouts." />
     <meta property="og:title" content="NDM ANIMATION — Stories in Motion" />
-    <meta property="og:description" content="Portfolio website for NDM ANIMATION featuring 15 curated videos across Animation, Motion Design, AI Videos, and Selected Videos with horizontal/vertical exhibition layouts." />
+    <meta property="og:description" content="Portfolio website for NDM ANIMATION featuring 16 curated videos across Animation, Motion Design, AI Videos, and Selected Videos with horizontal/vertical exhibition layouts." />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet" />
@@ -76,7 +76,7 @@
           </div>
 
           <!-- Hero Center Video (Between NDM ANIMATION hero text and Selected work) -->
-          <div class="hero-video-wrapper">
+          <div class="hero-video-wrapper" data-action="open-hero-modal" role="button" tabindex="0" aria-label="Play featured showcase video in modal">
             <video
               class="hero-video"
               id="hero-center-video"
@@ -88,6 +88,14 @@
               preload="auto"
               aria-label="NDM Animation featured showcase video"
             ></video>
+            <div class="hero-video-play-hint" aria-hidden="true">
+              <span class="hero-video-play-badge">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+                  <polygon points="6 3 20 12 6 21 6 3"></polygon>
+                </svg>
+                <span>WATCH FULL</span>
+              </span>
+            </div>
           </div>
 
           <!-- Hero Right-Side Glass Window -->
@@ -96,7 +104,7 @@
 
             <div class="card__head">
               <h2 class="card__title">Selected videos</h2>
-              <span class="card__index">//15</span>
+              <span class="card__index">//16</span>
             </div>
 
             <div class="card__body" id="hero-preview-list">
@@ -115,7 +123,7 @@
       <section class="portfolio-section" id="portfolio">
         <div class="portfolio-header">
           <div>
-            <div class="portfolio-header__meta">Selected Archive // 15 Videos</div>
+            <div class="portfolio-header__meta">Selected Archive // 16 Videos</div>
             <h2 class="portfolio-header__title">Curated Animations &amp; Motion Studies</h2>
           </div>
           <div class="portfolio-header__controls">
@@ -131,7 +139,7 @@
               <span class="portfolio-filter-sep" aria-hidden="true">/</span>
               <button class="portfolio-filter-btn" type="button" data-filter="motion" aria-pressed="false">MOTION DESIGN</button>
             </nav>
-            <span class="portfolio-header__progress" id="portfolio-progress-indicator">01 // 15</span>
+            <span class="portfolio-header__progress" id="portfolio-progress-indicator">01 // 16</span>
             <div class="portfolio-nav-btns" aria-label="Portfolio navigation">
               <button class="portfolio-nav-btn" id="portfolio-prev-btn" type="button" aria-label="Previous video">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
@@ -395,6 +403,61 @@
         <div class="menu__foot">
           <span class="menu__footLabel">Get in touch</span>
           <a class="menu__mail" href="mailto:ndmanimation@gmail.com">ndmanimation@gmail.com</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Video Player Modal -->
+    <div id="video-modal" class="video-modal" role="dialog" aria-modal="true" aria-hidden="true" aria-label="Video Player Modal">
+      <div class="video-modal__backdrop" data-close-modal></div>
+      <div class="video-modal__container">
+        <div class="video-modal__dialog">
+          <div class="video-modal__header">
+            <div class="video-modal__meta">
+              <span class="video-modal__category" id="modal-project-category">AI VIDEOS</span>
+              <span class="video-modal__sep" aria-hidden="true">//</span>
+              <span class="video-modal__number" id="modal-project-number">01</span>
+            </div>
+            <button type="button" class="video-modal__close-btn" data-close-modal aria-label="Close modal (Esc)">
+              <span class="video-modal__close-text">CLOSE</span>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="18" y1="6" x2="6" y2="18"></line>
+                <line x1="6" y1="6" x2="18" y2="18"></line>
+              </svg>
+            </button>
+          </div>
+
+          <div class="video-modal__player-box">
+            <video
+              id="modal-video-element"
+              class="video-modal__video"
+              playsinline
+              controls
+              preload="auto"
+            ></video>
+          </div>
+
+          <div class="video-modal__footer">
+            <div class="video-modal__info">
+              <h3 class="video-modal__title" id="modal-project-title">Selected Video</h3>
+              <p class="video-modal__desc" id="modal-project-desc">Description of the project motion choreography.</p>
+            </div>
+            <div class="video-modal__nav">
+              <button type="button" class="video-modal__nav-btn" id="modal-prev-btn" aria-label="Previous video">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="15 18 9 12 15 6"></polyline>
+                </svg>
+                <span>PREV</span>
+              </button>
+              <span class="video-modal__counter" id="modal-counter">01 / 16</span>
+              <button type="button" class="video-modal__nav-btn" id="modal-next-btn" aria-label="Next video">
+                <span>NEXT</span>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="9 18 15 12 9 6"></polyline>
+                </svg>
+              </button>
+            </div>
+          </div>
         </div>
       </div>
     </div>
