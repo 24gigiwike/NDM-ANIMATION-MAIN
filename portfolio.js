@@ -429,7 +429,7 @@ export function initPortfolio() {
     category: 'FEATURED SHOWCASE',
     categoryLabel: 'Studio Direction & Motion Aesthetics',
     year: '2026',
-    videoUrl: 'https://res.cloudinary.com/dtkluxukm/video/upload/v1791638269/gemini_generated_video_bdef1db9_ogqon1.mp4',
+    videoUrl: 'https://media.broadbrand.com.ng/video/gemini_generated_video_bdef1db9_ogqon1.mp4',
     description: 'Signature kinetic timing, fluid dynamics, and spatial animation direction.'
   };
 
